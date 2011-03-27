@@ -36,8 +36,8 @@ You can easily mock out AJAX fetch operations like this:
 
     Backbone.mock.respondTo('foo/1').withValue({ foo: 'fake' });
 
-Now when a model, that has the url of `foo/1` attempts to fetch, the given
-fake object literal is returned, and no XHR server interaction occurs.
+Now when a model that has the url of `foo/1` attempts to fetch, the
+object is returned, and no XHR server interaction occurs.  
 For example:
 
     Model = Backbone.Model.extend({

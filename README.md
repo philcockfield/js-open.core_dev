@@ -2,11 +2,10 @@
 
 The [Open.Core](https://github.com/philcockfield/js-open.core) library is a pure JavaScript implementation.
 To assist in make testing, and other development conveniences, this is a supporting project built in
-[Rails](http://rubyonrails.org/).
+[Rails](http://rubyonrails.org/).  
 See the [Open.Core repository](https://github.com/philcockfield/js-open.core).
 
 ---
-
 ## Testing - Jasmine (BDD)
 To setup Jasmine in your environment, make sure you have Ruby 1.9.2 installed.
 Then open the terminal window to the root of `core_dev` and install the
@@ -22,6 +21,32 @@ Tests can be run from: [http://localhost:8888/](http://localhost:8888/)
 The jQuery (and DOM fixture) testing is enabled for Jasmine via the
 [jasmine-jquery](https://github.com/velesin/jasmine-jquery) plugin.
 
+
+---
+## Testing - Mocking Backbone Model Ajax
+[Backbone.js](http://documentcloud.github.com/backbone/#Model-fetch) models have built in AJAX support for reading
+and persisting data to the server using a an ROA (Resource Oriented Architecture) style.
+
+### fetch
+You can easily mock out AJAX fetch operations like this:
+
+    Backbone.mock.respondTo('foo/1').withValue({ foo: 'fake' });
+
+Now when a model, that has the url of `foo/1` attempts to fetch, the given
+fake object literal is returned, and no XHR server interaction occurs.
+For example:
+
+    Model = Backbone.Model.extend({
+      defaults: {
+        foo: 'bar'
+      }
+    });
+
+    var model = new Model();
+    model.url = 'foo/1';
+    model.fetch();
+
+    model.get('foo') // => 'fake'
 
 ---
 ##Google Closure

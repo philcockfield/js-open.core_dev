@@ -11,12 +11,9 @@
 #   - dist/**/*.js
 #
 src_files:
-  - public/javascripts/prototype.js
-  - public/javascripts/effects.js
-  - public/javascripts/controls.js
-  - public/javascripts/dragdrop.js
-  - public/javascripts/application.js
-  - public/javascripts/**/*.js
+  - public/javascripts/closure-library/closure/goog/base.js
+  - public/javascripts/open.core/deps.js
+
 
 # stylesheets
 #

@@ -1,0 +1,3 @@
+[submodule "public/javascripts/open.core"]
+	path = public/javascripts/open.core
+	url = git@github.com:philcockfield/js-open.core.git

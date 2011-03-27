@@ -1,6 +1,6 @@
 # Open.Core (Development)
 
-The [Open.Core](https://github.com/philcockfield/js-open.core) library is a pure JavaScript implementation.
+The [Open.Core](https://github.com/philcockfield/js-open.core) library is a pure JavaScript implementation.  
 To assist in make testing, and other development conveniences, this is a supporting project built in
 [Rails](http://rubyonrails.org/).  
 See the [Open.Core](https://github.com/philcockfield/js-open.core) repository.

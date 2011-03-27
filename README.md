@@ -2,9 +2,10 @@
 
 The [Open.Core](https://github.com/philcockfield/js-open.core) library is a pure JavaScript implementation
 with no server-side dependencies.
-This supporting [Rails](http://rubyonrails.org/)) project provides tests, build scripts and other development
+This supporting [Rails](http://rubyonrails.org/) project provides tests, build scripts and other development
 conveniences, allowing the core repository to remain clean so that it can be pulled into projects
-(for example by using a Git Submodule) without also bringing down a lot of cruft.
+(for example by using a [Git Submodule](http://book.git-scm.com/5_submodules.html))
+without also bringing down a lot of cruft.
   
 See the [Open.Core](https://github.com/philcockfield/js-open.core) repository.
 

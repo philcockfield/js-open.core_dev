@@ -1,3 +1,6 @@
 [submodule "public/javascripts/open.core"]
 	path = public/javascripts/open.core
 	url = git@github.com:philcockfield/js-open.core.git
+[submodule "public/javascripts/closure-library"]
+	path = public/javascripts/closure-library
+	url = https://github.com/jarib/google-closure-library.git

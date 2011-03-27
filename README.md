@@ -31,7 +31,7 @@ The jQuery (and DOM fixture) testing is enabled for Jasmine via the
 [Backbone.js](http://documentcloud.github.com/backbone/#Model-fetch) models have built in AJAX support for reading
 and persisting data to the server using a an ROA (Resource Oriented Architecture) style.
 
-### fetch
+### Fetch Method
 You can easily mock out AJAX fetch operations like this:
 
     Backbone.mock.respondTo('foo/1').withValue({ foo: 'fake' });

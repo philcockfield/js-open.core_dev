@@ -69,8 +69,7 @@ Then in production, only the self-contained compiled .js files (ether a single f
 
 ### Building and Linting JavaScript with Closure Tools
 There is a `thor` task to perform the various build operations on the JavaScript
-in `open.core` using Google Closure tools.
-
+in `open.core` using Google Closure tools.  
 To see a list of all the available tasks, run:
 
  `thor list`

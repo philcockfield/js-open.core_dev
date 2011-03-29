@@ -26,7 +26,7 @@ class Js < Thor
     puts ""
   end
 
-  desc 'deps', "Calculate dependencies within JS files"
+  desc 'deps', "Calculate dependencies within all JavaScript files to generate deps.js"
 
   def deps
     puts "+ Calculating dependencies now..."
@@ -34,7 +34,7 @@ class Js < Thor
     puts ""
   end
 
-  desc "lint", "Runs the Google JS linter against all JS files in the project"
+  desc "lint", "Runs the Google JS linter against all JavaScript files in the project"
 
   def lint
     puts "+ Running JS Linter now..."
@@ -42,7 +42,7 @@ class Js < Thor
     lint_on "#{CORE_PATH}/core"
   end
 
-  desc "single", "Builds all dependencies into a single JS file"
+  desc "single", "Copies all dependencies into a single JavaScript file"
 
   def single
     puts "+ Generating single application script now..."

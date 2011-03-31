@@ -71,11 +71,10 @@ class Js < Thor
 
   desc "templates", "Builds soy templates"
 
-  def templates
+  def templates(path = JS_PATH)
     puts "+ Compiling soy templates"
 
-    success = true
-    success = false if ! compile_templates JS_PATH
+    success = compile_templates(path)
 
     puts "+ Compiled soy templates" if success
     puts "- FAILED to compile soy templates" if !success

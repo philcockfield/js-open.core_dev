@@ -20,6 +20,7 @@ class Js < Thor
     write_build_title "START", project
     success = true
 
+    success = false if !templates
     success = false if !deps
     success = false if !lint
     success = false if !single
@@ -63,7 +64,7 @@ class Js < Thor
                         -o script > #{file}
                      ")
     puts "+ Generated single application script file at: #{file}" if success
-    puts "+ FAILED to generate single application script file at: #{file}" if !success
+    puts "- FAILED to generate single application script file at: #{file}" if !success
     puts ""
     success
   end
@@ -71,19 +72,56 @@ class Js < Thor
   desc "templates", "Builds soy templates"
 
   def templates
-    puts "+ Building soy templates"
+    puts "+ Compiling soy templates"
 
-    samples_path = "#{JS_PATH}/samples/"
-    success = compile_template(samples_path, "simple")
+    success = true
+    success = false if ! compile_templates JS_PATH
 
     puts "+ Compiled soy templates" if success
-    puts "+ FAILED to compile soy templates" if !success
+    puts "- FAILED to compile soy templates" if !success
     puts ""
     success
   end
 
-
   private
+
+  def walk_dir(dir, &blk)
+    dir.entries.each do |entry|
+      if !hidden?(entry)
+        # Calculate paths.
+        entry_path = "#{dir.path}/#{entry}"
+        is_dir = FileTest.directory?(entry_path)
+
+        # Execute the block if it's a file.
+        yield File.new(entry_path) if !is_dir && block_given?
+
+        # RECURSION: Walk children if it's a folder.
+        walk_dir(Dir.new(entry_path), &blk) if is_dir
+      end
+    end
+  end
+
+  def hidden?(name)
+    name.match(/^./).to_s == "."
+  end
+
+
+  def compile_templates(folder_path)
+    success = true
+
+    walk_dir Dir.new(folder_path) do |file|
+
+      is_soy = file.path.match(/.soy$/).to_s == '.soy'
+      if (is_soy)
+        file_name = File.basename(file.path, ".soy")
+        dir_name = File.dirname(file.path)
+        success = false if !compile_template(dir_name, file_name)
+      end
+
+    end
+    success
+  end
+
 
   def compile_template(path, file_name)
     compiler = "#{JS_PATH}/closure-templates/SoyToJsSrcCompiler.jar"
@@ -96,6 +134,9 @@ class Js < Thor
                       --shouldProvideRequireSoyNamespaces \
                      #{input_file}
                      ")
+
+    puts "  >> Compiled template: #{output_file}" if success
+    puts "  >> FAILED to compile template: #{output_file}" if !success
     success
   end
 

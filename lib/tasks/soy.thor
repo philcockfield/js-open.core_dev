@@ -52,8 +52,8 @@ class Soy < Thor
                      #{input_file}
                      ")
 
-    puts "  >> Compiled template: #{output_file}" if success
-    puts "  >> FAILED to compile template: #{output_file}" if !success
+    puts "    > Compiled template: #{output_file}" if success
+    puts "    > FAILED to compile template: #{output_file}" if !success
     success
   end
 

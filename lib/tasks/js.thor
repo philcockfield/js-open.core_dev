@@ -20,6 +20,7 @@ class Js < Thor
     success = true
 
     success = false if !Soy.new.build
+    success = false if !Css.new.build
     success = false if !deps
     success = false if !lint
     success = false if !single

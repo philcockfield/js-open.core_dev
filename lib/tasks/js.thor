@@ -10,7 +10,6 @@ class Js < Thor
   JS_PATH = "public/javascripts"
   CORE_PATH = "#{JS_PATH}/open.core"
   CLOSURE_PATH = "#{JS_PATH}/closure-library/closure/bin"
-  CLOSURE_TMPL_PATH = "#{JS_PATH}/closure-templates"
 
   desc "build", "Calls all tasks to build the project in it's entirety"
 
@@ -20,7 +19,7 @@ class Js < Thor
     write_build_title "START", project
     success = true
 
-    success = false if !templates
+    success = false if !Soy.new.build
     success = false if !deps
     success = false if !lint
     success = false if !single
@@ -69,58 +68,8 @@ class Js < Thor
     success
   end
 
-  desc "templates", "Builds soy templates"
-
-  def templates(path = JS_PATH)
-    puts "+ Compiling soy templates"
-
-    success = compile_templates(path)
-
-    puts "+ Compiled soy templates" if success
-    puts "- FAILED to compile soy templates" if !success
-    puts ""
-    success
-  end
 
   private
-
-
-  def compile_templates(folder_path)
-    success = true
-    Dir["#{folder_path}/**/**"].each do |path|
-      is_soy = path.match(/.soy$/).to_s == '.soy'
-      if (is_soy && !hidden?(path))
-        file_name = File.basename(path, ".soy")
-        dir_name = File.dirname(path)
-        success = false if !compile_template(dir_name, file_name)
-      end
-    end
-    success
-  end
-
-
-  def compile_template(path, file_name)
-    compiler = "#{CLOSURE_TMPL_PATH}/SoyToJsSrcCompiler.jar"
-    input_file = "#{path}/#{file_name}.soy"
-    output_file = "#{path}/#{file_name}.js"
-
-    success = system("
-                      java -jar #{compiler} \
-                      --outputPathFormat #{output_file} \
-                      --shouldProvideRequireSoyNamespaces \
-                     #{input_file}
-                     ")
-
-    puts "  >> Compiled template: #{output_file}" if success
-    puts "  >> FAILED to compile template: #{output_file}" if !success
-    success
-  end
-
-
-  def hidden?(name)
-    name.match(/^./).to_s == "."
-  end
-
 
   def lint_on(path)
     success = system("gjslint --nojsdoc --strict --recurse #{path}")

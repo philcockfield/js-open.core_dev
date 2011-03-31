@@ -10,7 +10,7 @@ class Js < Thor
   JS_PATH = "public/javascripts"
   CORE_PATH = "#{JS_PATH}/open.core"
   CLOSURE_PATH = "#{JS_PATH}/closure-library/closure/bin"
-  CLOSURE_TMPL_PATH = "#{JS_PATH}/closure-templates/"
+  CLOSURE_TMPL_PATH = "#{JS_PATH}/closure-templates"
 
   desc "build", "Calls all tasks to build the project in it's entirety"
 
@@ -84,46 +84,23 @@ class Js < Thor
 
   private
 
-  def walk_dir(dir, &blk)
-    dir.entries.each do |entry|
-      if !hidden?(entry)
-        # Calculate paths.
-        entry_path = "#{dir.path}/#{entry}"
-        is_dir = FileTest.directory?(entry_path)
-
-        # Execute the block if it's a file.
-        yield File.new(entry_path) if !is_dir && block_given?
-
-        # RECURSION: Walk children if it's a folder.
-        walk_dir(Dir.new(entry_path), &blk) if is_dir
-      end
-    end
-  end
-
-  def hidden?(name)
-    name.match(/^./).to_s == "."
-  end
-
 
   def compile_templates(folder_path)
     success = true
-
-    walk_dir Dir.new(folder_path) do |file|
-
-      is_soy = file.path.match(/.soy$/).to_s == '.soy'
-      if (is_soy)
-        file_name = File.basename(file.path, ".soy")
-        dir_name = File.dirname(file.path)
+    Dir["#{folder_path}/**/**"].each do |path|
+      is_soy = path.match(/.soy$/).to_s == '.soy'
+      if (is_soy && !hidden?(path))
+        file_name = File.basename(path, ".soy")
+        dir_name = File.dirname(path)
         success = false if !compile_template(dir_name, file_name)
       end
-
     end
     success
   end
 
 
   def compile_template(path, file_name)
-    compiler = "#{JS_PATH}/closure-templates/SoyToJsSrcCompiler.jar"
+    compiler = "#{CLOSURE_TMPL_PATH}/SoyToJsSrcCompiler.jar"
     input_file = "#{path}/#{file_name}.soy"
     output_file = "#{path}/#{file_name}.js"
 
@@ -138,6 +115,12 @@ class Js < Thor
     puts "  >> FAILED to compile template: #{output_file}" if !success
     success
   end
+
+
+  def hidden?(name)
+    name.match(/^./).to_s == "."
+  end
+
 
   def lint_on(path)
     success = system("gjslint --nojsdoc --strict --recurse #{path}")

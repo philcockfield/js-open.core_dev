@@ -10,6 +10,7 @@ class Js < Thor
   JS_PATH = "public/javascripts"
   CORE_PATH = "#{JS_PATH}/open.core"
   CLOSURE_PATH = "#{JS_PATH}/closure-library/closure/bin"
+  CLOSURE_TMPL_PATH = "#{JS_PATH}/closure-templates/"
 
   desc "build", "Calls all tasks to build the project in it's entirety"
 
@@ -17,21 +18,28 @@ class Js < Thor
     project = "core_dev"
     puts ""
     write_build_title "START", project
+    success = true
 
-    deps
-    lint
-    single
+    success = false if !deps
+    success = false if !lint
+    success = false if !single
 
-    write_build_title "COMPLETE", project
+    write_build_title("FAILED", project) if !success
+    write_build_title("SUCCESS", project) if success
     puts ""
+    success
   end
 
   desc 'deps', "Calculate dependencies within all JavaScript files to generate deps.js"
 
   def deps
     puts "+ Calculating dependencies now..."
-    calc_deps "open.core"
+    success = true
+
+    success = false if !calc_deps "open.core"
+    
     puts ""
+    success
   end
 
   desc "lint", "Runs the Google JS linter against all JavaScript files in the project"
@@ -56,7 +64,23 @@ class Js < Thor
                      ")
     puts "+ Generated single application script file at: #{file}" if success
     puts "+ FAILED to generate single application script file at: #{file}" if !success
-    puts""
+    puts ""
+    success
+  end
+
+  desc "templates", "Builds soy templates"
+
+  def templates
+    puts "+ Building soy templates"
+
+    compiler = "#{JS_PATH}/closure-templates/SoyToJsSrcCompiler.jar"
+
+    success = system("
+                      java -jar #{compiler} \
+                      --outputPathFormat \
+                      simple.js simple.soy
+                     ")
+    success
   end
 
 
@@ -67,18 +91,20 @@ class Js < Thor
     puts "+ Lint successful within folder: #{path}" if success
     puts "- Lint FAILED within folder: #{path}" if !success
     puts ""
+    success
   end
 
   def calc_deps(folder)
     path = "#{JS_PATH}/#{folder}"
     output_file = "#{path}/deps.js"
     success = system("
-           #{CLOSURE_PATH}/build/depswriter.py  \
+                     #{CLOSURE_PATH}/build/depswriter.py  \
            --root_with_prefix='#{path} ../../../#{folder}' \
            > #{output_file}
-           ")
+                     ")
     puts "+ Generated closure dependency file at: #{output_file}" if success
     puts "- FAILED to generate closure dependency file at: #{output_file}" if !success
+    success
   end
 
   def write_build_title(section, project)

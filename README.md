@@ -67,9 +67,10 @@ it's easiest to keep it within your static javascripts folder (wherever that hap
 This makes it easy to reference and serve all the loose .js files it needs to while in debug mode.
 Then in production, only the self-contained compiled .js files (ether a single file, or just a few) are deployed._
 
+
 ### Building and Linting JavaScript with Closure Tools
-There is a `thor` task to perform the various build operations on the JavaScript
-in `open.core` using Google Closure tools.  
+There is a `thor` task to perform the various build operations on JavaScript
+in `open.core` using Google Closure tools.
 To see a list of all the available tasks, run:
 
  `thor list`
@@ -77,6 +78,11 @@ To see a list of all the available tasks, run:
 To run the complete build operation, run:
 
  `thor js:build`
+
+#### Coding Style ([Linter](http://code.google.com/closure/utilities/))
+The linter needs to be installed on your machine.  To install on OSX:
+
+  `sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz`
 
 
 #### See also:

@@ -37,7 +37,7 @@ class Js < Thor
     success = true
 
     success = false if !calc_deps "open.core"
-    
+
     puts ""
     success
   end
@@ -73,18 +73,31 @@ class Js < Thor
   def templates
     puts "+ Building soy templates"
 
-    compiler = "#{JS_PATH}/closure-templates/SoyToJsSrcCompiler.jar"
+    samples_path = "#{JS_PATH}/samples/"
+    success = compile_template(samples_path, "simple")
 
-    success = system("
-                      java -jar #{compiler} \
-                      --outputPathFormat \
-                      simple.js simple.soy
-                     ")
+    puts "+ Compiled soy templates" if success
+    puts "+ FAILED to compile soy templates" if !success
+    puts ""
     success
   end
 
 
   private
+
+  def compile_template(path, file_name)
+    compiler = "#{JS_PATH}/closure-templates/SoyToJsSrcCompiler.jar"
+    input_file = "#{path}/#{file_name}.soy"
+    output_file = "#{path}/#{file_name}.js"
+
+    success = system("
+                      java -jar #{compiler} \
+                      --outputPathFormat #{output_file} \
+                      --shouldProvideRequireSoyNamespaces \
+                     #{input_file}
+                     ")
+    success
+  end
 
   def lint_on(path)
     success = system("gjslint --nojsdoc --strict --recurse #{path}")

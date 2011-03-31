@@ -91,5 +91,5 @@ The linter needs to be installed on your machine.  To install on OSX:
 * [Namespaces and Dependency Management - goog.provide() and goog.require()](http://code.google.com/closure/library/docs/introduction.html)
 * [Compiling your JavaScript](http://code.google.com/closure/library/docs/calcdeps.html)
 * [Closure API Reference](http://closure-library.googlecode.com/svn/docs/index.html)
-
+* [Closure Templates Compilation](http://code.google.com/closure/templates/docs/javascript_usage.html#compilation)
 

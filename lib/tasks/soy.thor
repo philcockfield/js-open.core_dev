@@ -7,7 +7,7 @@
 # --------------------------------------------------------
 
 class Soy < Thor
-  CLOSURE_TMPL_PATH = "#{Js::JS_PATH}/closure-templates"
+  CLOSURE_TMPL_PATH = "#{Js::CLOSURE_PATH}/closure-templates"
 
 
   desc "build", "Builds closure templates (.soy => .js)"

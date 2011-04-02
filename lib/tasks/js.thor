@@ -9,7 +9,8 @@
 class Js < Thor
   JS_PATH = "public/javascripts"
   CORE_PATH = "#{JS_PATH}/open.core"
-  CLOSURE_PATH = "#{JS_PATH}/closure-library/closure/bin"
+  CLOSURE_PATH = "#{JS_PATH}/closure"
+  CLOSURE_TOOLS_PATH = "#{CLOSURE_PATH}/closure-library/closure/bin"
 
   desc "build", "Calls all tasks to build the project in it's entirety"
 
@@ -38,7 +39,10 @@ class Js < Thor
     success = true
 
     success = false if !calc_deps "open.core"
+    success = false if !calc_deps "closure/closure-templates"
 
+    puts "+ SUCCESS generating deps files" if success
+    puts "- FAILED to generate deps files" if !success
     puts ""
     success
   end
@@ -57,9 +61,10 @@ class Js < Thor
     puts "+ Generating single application script now..."
     file = "#{JS_PATH}/application-single.js"
     success = system("
-                     #{CLOSURE_PATH}/calcdeps.py \
+                     #{CLOSURE_TOOLS_PATH}/calcdeps.py \
                         -i #{JS_PATH}/application.js \
-                        -p #{JS_PATH}/closure-library/ \
+                        -p #{CLOSURE_PATH}/closure-library/ \
+                        -p #{CLOSURE_PATH}/closure-templates/ \
                         -p #{JS_PATH}/open.core/ \
                         -o script > #{file}
                      ")
@@ -96,7 +101,7 @@ class Js < Thor
     path = "#{JS_PATH}/#{folder}"
     output_file = "#{path}/deps.js"
     success = system("
-                     #{CLOSURE_PATH}/build/depswriter.py  \
+                     #{CLOSURE_TOOLS_PATH}/build/depswriter.py  \
            --root_with_prefix='#{path} ../../../#{folder}' \
            > #{output_file}
                      ")

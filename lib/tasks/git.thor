@@ -13,8 +13,8 @@ class Git < Thor
   desc "pull", "Pulls from the root development repository and also pulls all sub-modules"
 
   def pull
+    write_title "GIT PULL"
     current_dir = Dir.pwd
-    js = js_path(current_dir)
 
     pull_repo Git::OPEN_CORE, open_core_path(current_dir)
     pull_repo Git::OPEN_CORE_DEV, current_dir
@@ -25,6 +25,7 @@ class Git < Thor
   desc "commit", "Adds everything to Git and commits the both the 'core' and 'core_dev' repositories"
 
   def commit(message)
+    write_title "COMMIT"
     current_dir = Dir.pwd
 
     commit_repo Git::OPEN_CORE, message, open_core_path(current_dir)
@@ -36,6 +37,7 @@ class Git < Thor
   desc "push", "Pushes the repository and all sub-modules to GitHub"
 
   def push
+    write_title "GIT PUSH"
     current_dir = Dir.pwd
 
     push_repo Git::OPEN_CORE, open_core_path(current_dir)

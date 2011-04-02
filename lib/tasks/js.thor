@@ -48,7 +48,7 @@ class Js < Thor
   def lint
     puts "+ Running JS Linter now..."
     puts "--"
-    lint_on "#{CORE_PATH}/core"
+    lint_on CORE_PATH, "#{CORE_PATH}/lib"
   end
 
   desc "single", "Copies all dependencies into a single JavaScript file"
@@ -72,13 +72,25 @@ class Js < Thor
 
   private
 
-  def lint_on(path)
-    success = system("gjslint --nojsdoc --strict --recurse #{path}")
+  def lint_on(path, exclude_dirs = nil)
+    success = system("
+                      gjslint \
+                          --nojsdoc \
+                          --strict \
+                          --recurse #{path} \
+                          --exclude_directories '#{exclude_dirs}' \
+                          --exclude_files 'deps.js, #{get_tmpl_files(path)}'
+                     ")
     puts "+ Lint successful within folder: #{path}" if success
     puts "- Lint FAILED within folder: #{path}" if !success
     puts ""
     success
   end
+
+  def get_tmpl_files(path)
+    Dir["#{path}/**/*.tmpl.js"].collect { |f| File.basename(f) }.join(", ")
+  end
+
 
   def calc_deps(folder)
     path = "#{JS_PATH}/#{folder}"

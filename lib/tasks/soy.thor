@@ -43,7 +43,7 @@ class Soy < Thor
   def compile_template(path, file_name)
     compiler = "#{CLOSURE_TMPL_PATH}/SoyToJsSrcCompiler.jar"
     input_file = "#{path}/#{file_name}.soy"
-    output_file = "#{path}/#{file_name}.js"
+    output_file = "#{path}/#{file_name}.tmpl.js"
 
     success = system("
                       java -jar #{compiler} \

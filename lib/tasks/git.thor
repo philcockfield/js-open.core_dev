@@ -24,7 +24,7 @@ class Git < Thor
   def commit(message)
     current_dir = Dir.pwd
 
-    commit_repository "open.core sub-module)", message, "#{js_path(current_dir)}/open.core"
+    commit_repository "open.core sub-module", message, "#{js_path(current_dir)}/open.core"
     commit_repository "open.core_dev", message, current_dir
 
     reset_dir(current_dir)

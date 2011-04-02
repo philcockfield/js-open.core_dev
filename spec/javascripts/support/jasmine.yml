@@ -11,7 +11,8 @@
 #   - dist/**/*.js
 #
 src_files:
-  - public/javascripts/closure-library/closure/goog/base.js
+  - public/javascripts/closure/closure-library/closure/goog/base.js
+  - public/javascripts/closure/closure-templates/deps.js
   - public/javascripts/open.core/deps.js
 
 

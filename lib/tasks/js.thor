@@ -102,7 +102,7 @@ class Js < Thor
     output_file = "#{path}/deps.js"
     success = system("
                      #{CLOSURE_TOOLS_PATH}/build/depswriter.py  \
-           --root_with_prefix='#{path} ../../../#{folder}' \
+           --root_with_prefix='#{path} ../../../../#{folder}' \
            > #{output_file}
                      ")
     puts "+ Generated closure dependency file at: #{output_file}" if success

@@ -22,6 +22,15 @@ describe('open.core.events', function() {
       events.publish('test:event');
       expect(wasFired).toBeTruthy();
     });
+
+    it('does not respond after an event us unsubscribed', function() {
+      var wasFired = false;
+      events.subscribe('test:event', function() { wasFired = true; });
+      events.unsubscribe('test:event');
+
+      events.publish('test:event');
+      expect(wasFired).toBeFalsy();
+    });
   });
 });
 

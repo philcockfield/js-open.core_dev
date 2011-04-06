@@ -5,7 +5,10 @@ module PagesHelper
   end
 
   def single_js_file?
-    params[:mode] == 'single' || Rails.env.production?
+    return true if params[:mode] == 'single'
+    return false if params[:mode] == 'debug'
+    return true if Rails.env.production?
+    false
   end
 
 end

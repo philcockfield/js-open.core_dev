@@ -40,6 +40,7 @@ class Js < Thor
 
     success = false if !calc_deps "open.core"
     success = false if !calc_deps "closure/closure-templates"
+    success = false if !calc_deps "test"
 
     puts "+ SUCCESS generating deps files" if success
     puts "- FAILED to generate deps files" if !success
@@ -66,6 +67,7 @@ class Js < Thor
                         -p #{CLOSURE_PATH}/closure-library/ \
                         -p #{CLOSURE_PATH}/closure-templates/ \
                         -p #{JS_PATH}/open.core/ \
+                        -p #{JS_PATH}/test/ \
                         -o script > #{file}
                      ")
     puts "+ Generated single application script file at: #{file}" if success

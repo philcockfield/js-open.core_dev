@@ -4,6 +4,7 @@ goog.addDependency('../../../../open.core/core/testing/backbone_mock_ajax.js', [
 goog.addDependency('../../../../open.core/core/util/events.js', ['open.core.events'], ['lib.jquery']);
 goog.addDependency('../../../../open.core/core/util/reflection.js', ['open.core.reflection'], []);
 goog.addDependency('../../../../open.core/deps.js', [], []);
+goog.addDependency('../../../../open.core/lib/boot.js', ['lib.boot'], ['lib.backbone', 'lib.jquery', 'lib.underscore']);
 goog.addDependency('../../../../open.core/lib/jquery/jquery-1.4.2.js', [], []);
 goog.addDependency('../../../../open.core/lib/jquery/jquery-1.4.2.min.js', ['lib.jquery'], []);
 goog.addDependency('../../../../open.core/lib/mvc/backbone-0.3.3.js', ['lib.backbone'], ['lib.underscore']);

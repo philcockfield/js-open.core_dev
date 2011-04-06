@@ -1,2 +1,2 @@
-goog.require('lib.underscore');
-goog.require('lib.jquery');
+goog.require('lib.boot');
+goog.require('sample');

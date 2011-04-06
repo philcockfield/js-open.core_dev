@@ -38,9 +38,9 @@ class Js < Thor
     puts "+ Calculating dependencies now..."
     success = true
 
-    success = false if !calc_deps "open.core"
     success = false if !calc_deps "closure/closure-templates"
-    success = false if !calc_deps "test"
+    success = false if !calc_deps "open.core", "{open.core}"
+    success = false if !calc_deps "test", "{open.core}"
 
     puts "+ SUCCESS generating deps files" if success
     puts "- FAILED to generate deps files" if !success
@@ -99,12 +99,12 @@ class Js < Thor
   end
 
 
-  def calc_deps(folder)
+  def calc_deps(folder, prefix = "../../../..")
     path = "#{JS_PATH}/#{folder}"
     output_file = "#{path}/deps.js"
     success = system("
                      #{CLOSURE_TOOLS_PATH}/build/depswriter.py  \
-           --root_with_prefix='#{path} ../../../../#{folder}' \
+           --root_with_prefix='#{path} #{prefix}/#{folder}' \
            > #{output_file}
                      ")
     puts "+ Generated closure dependency file at: #{output_file}" if success

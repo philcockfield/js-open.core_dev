@@ -1,0 +1,116 @@
+// Open.Core :: MIT Licence. (c) 2011 Phil Cockfield
+
+
+// ------------------------------------------------------
+//                       Common
+// ------------------------------------------------------
+$black:       #000000;
+$white:       #FFFFFF;
+$transparent: rgba(0, 0, 0, 0.0);
+$ruby:        rgba(255, 0, 0, 0.3);
+
+
+
+// ------------------------------------------------------
+//                       Position
+// ------------------------------------------------------
+@mixin abs_pos($left:0, $top:0, $right:0, $bottom:0) {
+  @include absolute_position($left, $top, $right, $bottom);
+}
+@mixin absolute_position($left:0, $top:0, $right:0, $bottom:0) {
+  @include position(absolute, $left, $top, $right, $bottom);
+}
+
+@mixin rel_pos($left:0, $top:0, $right:0, $bottom:0) {
+  @include relative_position($left, $top, $right, $bottom);
+}
+@mixin relative_position($left:0, $top:0, $right:0, $bottom:0) {
+  @include position(relative, $left, $top, $right, $bottom);
+}
+
+@mixin position($position:absolute, $left:0, $top:0, $right:0, $bottom:0) {
+  position: $position;
+  @if $left   != nil { left:   #{$left}px; }
+  @if $top    != nil { top:    #{$top}px; }
+  @if $right  != nil { right:  #{$right}px; }
+  @if $bottom != nil { bottom: #{$bottom}px; }
+}
+
+@mixin abs_center($width, $height, $horizontal_offset:0, $vertical_offset:0, $unit:"px") {
+  position: absolute;
+  width: #{$width}#{$unit};
+  height: #{$height}#{$unit};
+  left: 50%;
+  top: 50%;
+  margin-left: -#{($width / 2) - $horizontal_offset}#{$unit};
+  margin-top: -#{($height / 2) - $vertical_offset}#{$unit};
+}
+
+
+
+// ------------------------------------------------------
+//                       Gradient
+// ------------------------------------------------------
+
+// Percent values 0..1
+@mixin gradient_y_fade($color, $top_percent, $bottom_percent) {
+  @include gradient_y($transparent, transparentize($color, 1 - $top_percent), transparentize($color, 1 - $bottom_percent));
+}
+
+// Percent value: n%
+@mixin gradient_y_darken_down($top_color, $darken_percent) {
+  @include gradient_y($top_color, $top_color, darken($top_color, $darken_percent));
+}
+
+@mixin gradient_y($default_color, $top_color, $bottom_color) {
+  background: $default_color;
+  
+  // WebKit
+  background: -webkit-gradient(linear, left top, left bottom, from($top_color), to($bottom_color));
+
+  // Firefox (3.6+)
+  background: -moz-linear-gradient(top,  $top_color,  $bottom_color);
+
+  // IE
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{$top_color}", endColorstr="#{$bottom_color}");
+}
+
+
+
+// ------------------------------------------------------
+//                    Rounded Corners
+// ------------------------------------------------------
+@mixin rounded_corners($radius:5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+}
+
+@mixin custom_rounded_corners($topLeft, $topRight, $bottomRight, $bottomLeft) {
+  -webkit-border-top-left-radius:     $topLeft;
+  -webkit-border-top-right-radius:    $topRight;
+  -webkit-border-bottom-right-radius: $bottomRight;
+  -webkit-border-bottom-left-radius:  $bottomLeft;
+
+  -moz-border-radius-topleft:     $topLeft;
+  -moz-border-radius-topright:    $topRight;
+  -moz-border-radius-bottomright: $bottomRight;
+  -moz-border-radius-bottomleft:  $bottomLeft;
+
+  border-top-left-radius:     $topLeft;
+  border-top-right-radius:    $topRight;
+  border-bottom-right-radius: $bottomRight;
+  border-bottom-left-radius:  $bottomLeft;
+}
+
+
+// ------------------------------------------------------
+//                         Text
+// ------------------------------------------------------
+@mixin no_select() {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

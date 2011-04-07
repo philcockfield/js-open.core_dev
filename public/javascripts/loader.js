@@ -9,12 +9,15 @@
 var LOADER = LOADER || {};
 
 LOADER.util = {
+  defaultPaths: {},
+
   formatPath: function(path) {
     var paths, mapValue;
     var tokenStart, tokenEnd, token;
 
     // Setup initial conditions.
     paths = LOADER.paths;
+
     if (!paths) throw '[LOADER.paths] containing the URLs required to ' +
             'bootstrap the page cannot be found.';
 

@@ -1,5 +1,5 @@
 var LOADER = LOADER || {};
-LOADER.local = false;
+LOADER.local = true;
 
 /**
  * URL domain mappings.

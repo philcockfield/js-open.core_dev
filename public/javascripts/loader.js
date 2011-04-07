@@ -9,34 +9,12 @@
 var LOADER = LOADER || {};
 
 LOADER.util = {
-  /**
-   * Determines whether the given string starts with another string.
-   * @param {string} value - the to examine the start of.
-   * @param {string} match - the value to match.
-   */
-  startsWith: function(value, match) {
-    return value.indexOf(match) === 0;
-  },
-
-  /**
-   * Gets the start of a string if it is token in the form of {name}.
-   * @param {string} value to examine.
-   * @returns {string} the token if found, otherwise undefined.
-   */
-  getStartingToken: function(value) {
-    if (LOADER.util.startsWith(value, '{')) {
-      return value.substr(0, value.indexOf('}') + 1);
-    }
-  },
-
-
   formatPath: function(path) {
-    var util, paths, mapValue;
+    var paths, mapValue;
     var tokenStart, tokenEnd, token;
 
     // Setup initial conditions.
     paths = LOADER.paths;
-    util = LOADER.util;
     if (!paths) throw '[LOADER.paths] containing the URLs required to ' +
             'bootstrap the page cannot be found.';
 
@@ -63,7 +41,8 @@ LOADER.util = {
 
   /**
    * Overrides the SCRIPT tag writer within Goog [base.js]
-   * allowing paths to be intercepted and formatted.
+   * allowing paths to be intercepted and formatted,
+   * replacing {token}s with mapped values.
    * @param goog
    */
   overrideScriptWriter: function(goog) {
@@ -84,4 +63,7 @@ LOADER.util = {
 };
 
 
+/**
+ * Inject overrides to default Google behavior.
+ */
 LOADER.util.overrideScriptWriter(goog);

@@ -1,8 +1,6 @@
 goog.provide('sample');
 
+
 $(function() {
-
-
-  $('#output').html("Hello Open.Core!");
-
+  $('#output').html('Hello Open.Core!');
 });

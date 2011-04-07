@@ -5,7 +5,10 @@
  * [loader.js] assumes that [goog/base.js] has been declared
  * in the page BEFORE this file.
  */
+
+
 var LOADER = LOADER || {};
+
 
 /**
  * Maps {tokens} in [deps.js] files to actual paths.
@@ -31,8 +34,10 @@ LOADER.scriptMapper = (function() {
     // Setup initial conditions.
     paths = LOADER.paths;
 
-    if (!paths) throw '[LOADER.paths] containing the URLs required to ' +
-            'bootstrap the page cannot be found.';
+    if (!paths) {
+      throw '[LOADER.paths] containing the URLs required to ' +
+              'bootstrap the page cannot be found.';
+    }
 
     // Determine if there is a token within the path.
     tokenStart = path.indexOf('{');
@@ -47,21 +52,24 @@ LOADER.scriptMapper = (function() {
     // Swap out the token.
     if (token) {
       mapValue = paths[token];
-      if (!mapValue) throw 'The path token ' + token + ' is not mapped to a value.  ' +
-              'Include it within the [LOADER.paths] mapping object on the page.';
+      if (!mapValue) {
+        throw 'The path token ' + token + ' is not mapped to a value. ' +
+                'Include it within the [LOADER.paths] ' +
+                'mapping object on the page.';
+      }
+
       path = mapValue + path;
     }
     return path;
-  }; 
+  };
 
 
   /**
    * Overrides the SCRIPT tag writer within Goog [base.js]
    * allowing paths to be intercepted and formatted,
    * replacing {token}s with mapped values.
-   * @param goog
    */
-  overrideScriptWriter = function(goog) {
+  overrideScriptWriter = function() {
 
     // Store a reference to the original tag-writer.
     var googTagWriter = goog.writeScriptTag_;
@@ -79,6 +87,5 @@ LOADER.scriptMapper = (function() {
 
 
   // Finish up.
-  overrideScriptWriter(goog);
-
+  overrideScriptWriter();
 }());

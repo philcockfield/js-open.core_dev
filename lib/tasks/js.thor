@@ -1,5 +1,5 @@
 # --------------------------------------------------------
-# Build the JavaScript environment using Google Closure tools.
+# Beft environment using Google Closure tools.
 #
 # Commands:
 #   $ thor list
@@ -53,8 +53,15 @@ class Js < Thor
   def lint
     puts "+ Running JS Linter now..."
     puts "--"
-    lint_on CORE_PATH, "#{CORE_PATH}/lib"
+    lint_on JS_PATH, "#{CORE_PATH}/lib, #{JS_PATH}/closure"
   end
+
+  desc "lint_help", "Outputs the lint option flags"
+
+  def lint_help
+    system("gjslint --help")
+  end
+
 
   desc "single", "Copies all dependencies into a single JavaScript file"
 
@@ -80,13 +87,14 @@ class Js < Thor
   private
 
   def lint_on(path, exclude_dirs = nil)
+#    --strict \
+
     success = system("
                       gjslint \
                           --nojsdoc \
-                          --strict \
                           --recurse #{path} \
                           --exclude_directories '#{exclude_dirs}' \
-                          --exclude_files 'deps.js, #{get_tmpl_files(path)}'
+                          --exclude_files 'application-single.js, deps.js, #{get_tmpl_files(path)}'
                      ")
     puts "+ Lint successful within folder: #{path}" if success
     puts "- Lint FAILED within folder: #{path}" if !success

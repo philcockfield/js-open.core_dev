@@ -1,17 +1,30 @@
 /**
- * Loader used to bootstrap the page when working in DEBUG mode.
- * --------------------------------------------------------
+ * Loader used to bootstrap the page (along with Google Closure)
+ * when working in DEBUG mode.
  *
- * The loader assumes the existence of a 'LOADER.paths' object
- * describing where various required elements can be found.
- * Include this in the page before the [loader.js] script declaration.
+ * [loader.js] assumes that [goog/base.js] has been declared
+ * in the page BEFORE this file.
  */
 var LOADER = LOADER || {};
 
-LOADER.util = {
-  defaultPaths: {},
+/**
+ * Maps {tokens} in [deps.js] files to actual paths.
+ * --------------------------------------------------------
+ *
+ * The scripts assumes the existence of a [LOADER.paths] object
+ * describing how to map {token} values included within [deps.js]
+ *
+ * Doing this allows you to easily distribute where resources are
+ * pulled from across multiple domains.
+ *
+ * Include the [LOADER.paths] in the page before the [loader.js]
+ * script declaration.
+ *
+ */
+LOADER.scriptMapper = (function() {
+  var formatPath, overrideScriptWriter;
 
-  formatPath: function(path) {
+  formatPath = function(path) {
     var paths, mapValue;
     var tokenStart, tokenEnd, token;
 
@@ -39,7 +52,7 @@ LOADER.util = {
       path = mapValue + path;
     }
     return path;
-  },
+  }; 
 
 
   /**
@@ -48,7 +61,7 @@ LOADER.util = {
    * replacing {token}s with mapped values.
    * @param goog
    */
-  overrideScriptWriter: function(goog) {
+  overrideScriptWriter = function(goog) {
 
     // Store a reference to the original tag-writer.
     var googTagWriter = goog.writeScriptTag_;
@@ -57,16 +70,15 @@ LOADER.util = {
     goog.writeScriptTag_ = function(src) {
 
       // Process any {tokens} within the path.
-      src = LOADER.util.formatPath(src);
+      src = formatPath(src);
 
       // Pass execution to the script writer.
       return googTagWriter(src);
     };
   }
-};
 
 
-/**
- * Inject overrides to default Google behavior.
- */
-LOADER.util.overrideScriptWriter(goog);
+  // Finish up.
+  overrideScriptWriter(goog);
+
+}());

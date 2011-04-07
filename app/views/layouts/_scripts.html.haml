@@ -5,11 +5,11 @@
 - if !single_js_file?
 
   -# Pre-requisites.
-  = javascript_include_tag 'closure/closure-library/closure/goog/base.js'
-  = javascript_include_tag 'paths.js'
-  = javascript_include_tag 'loader.js'
+  = javascript_include_tag "#{domain}/javascripts/closure/closure-library/closure/goog/base.js"
+  = javascript_include_tag "paths.js"
+  = javascript_include_tag "loader.js"
 
   -# Application.
-  = javascript_include_tag 'open.core/deps.js'
-  = javascript_include_tag 'test/deps.js'
-  = javascript_include_tag 'application.js'
+  = javascript_include_tag "open.core/deps.js"
+  = javascript_include_tag "test/deps.js"
+  = javascript_include_tag "application.js"

@@ -67,8 +67,11 @@ LOADER.util = {
    * @param goog
    */
   overrideScriptWriter: function(goog) {
+
+    // Store a reference to the original tag-writer.
     var googTagWriter = goog.writeScriptTag_;
 
+    // Replace the goog function with this one.
     goog.writeScriptTag_ = function(src) {
 
       // Process any {tokens} within the path.

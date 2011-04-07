@@ -453,6 +453,7 @@ if (!COMPILED) {
   goog.importScript_ = function(src) {
     var importScript = goog.global.CLOSURE_IMPORT_SCRIPT ||
         goog.writeScriptTag_;
+
     if (!goog.dependencies_.written[src] && importScript(src)) {
       goog.dependencies_.written[src] = true;
     }
@@ -2669,4 +2670,10 @@ $(function() {
 // Input 6
 goog.require('lib.boot');
 goog.require('sample');
+
+
+
+//goog.require('goog.dom'); //TEMP
+
+
 

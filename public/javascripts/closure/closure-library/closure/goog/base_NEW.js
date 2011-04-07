@@ -452,7 +452,6 @@ if (!COMPILED) {
   goog.importScript_ = function(src) {
     var importScript = goog.global.CLOSURE_IMPORT_SCRIPT ||
         goog.writeScriptTag_;
-
     if (!goog.dependencies_.written[src] && importScript(src)) {
       goog.dependencies_.written[src] = true;
     }
@@ -489,8 +488,35 @@ if (!COMPILED) {
     var scripts = [];
     var seenScript = {};
     var deps = goog.dependencies_;
+    var formatPath, startsWith, getPrefix;
+
+    startsWith = function(value, match) {
+      return value.indexOf(match) === 0;
+    };
+
+    getPrefix = function(path) {
+      if (startsWith(path, '{')) {
+        return path.substr(0, path.indexOf('}') + 1);
+      }
+    };
+
+    formatPath = function(path) {
+      var prefix, domain;
+      prefix = getPrefix(path);
+
+      if (prefix){
+        domain = domains[prefix];
+        if (!domain) throw 'The path prefix ' + prefix + ' is not mapped to a domain.  ' +
+                'Include a [domains] mapping object into the page.';
+        path = domain + path.substr(prefix.length, path.length - prefix.length);
+      }
+
+      return path;
+    };
 
     function visitNode(path) {
+      path = formatPath(path);
+
       if (path in deps.written) {
         return;
       }
@@ -532,9 +558,18 @@ if (!COMPILED) {
       }
     }
 
+    var formatScript = function(scriptUrl) {
+      // Only prefix with the base-path if the provided URL
+      // is not fully qualified with a domain.
+      scriptUrl = startsWith(scriptUrl, "http")
+              ? scriptUrl
+              : goog.basePath + scripts[i];
+      return scriptUrl;
+    };
+
     for (var i = 0; i < scripts.length; i++) {
       if (scripts[i]) {
-        goog.importScript_(goog.basePath + scripts[i]);
+        goog.importScript_(formatScript(scripts[i]));
       } else {
         throw Error('Undefined script input');
       }

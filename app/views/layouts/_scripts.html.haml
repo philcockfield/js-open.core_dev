@@ -1,17 +1,15 @@
 - remote = true
 - domain = remote ? "http://open-core.heroku.com" : ""
 
-= javascript_include_tag 'domains.js'
-
 
 - if !single_js_file?
 
-  =javascript_include_tag "#{domain}/javascripts/closure/closure-library/closure/goog/base.js"
-  =javascript_include_tag "#{domain}/javascripts/closure/closure-templates/deps.js"
+  -# Pre-requisites.
+  = javascript_include_tag 'closure/closure-library/closure/goog/base.js'
+  = javascript_include_tag 'paths.js'
+  = javascript_include_tag 'loader.js'
 
-  -#= javascript_include_tag 'closure/closure-library/closure/goog/base.js'
-  -#= javascript_include_tag 'closure/closure-templates/deps.js'
-  = js_tag 'open.core/deps.js'
-  = js_tag 'test/deps.js'
-
-= javascript_include_tag application_js
+  -# Application.
+  = javascript_include_tag 'open.core/deps.js'
+  = javascript_include_tag 'test/deps.js'
+  = javascript_include_tag 'application.js'

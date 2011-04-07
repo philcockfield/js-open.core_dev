@@ -38,7 +38,8 @@ class Js < Thor
     puts "+ Calculating dependencies now..."
     success = true
 
-    success = false if !calc_deps "closure/closure-templates"
+    success = false if !calc_deps "closure/closure-library/closure/goog", "{closure-lib}"
+    success = false if !calc_deps "closure/closure-templates", "{closure-tmpl}"
     success = false if !calc_deps "open.core", "{open.core}"
     success = false if !calc_deps "test", "{open.core}"
 
@@ -87,8 +88,6 @@ class Js < Thor
   private
 
   def lint_on(path, exclude_dirs = nil)
-#    --strict \
-
     success = system("
                       gjslint \
                           --nojsdoc \

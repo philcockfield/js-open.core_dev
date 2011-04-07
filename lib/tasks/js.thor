@@ -40,7 +40,7 @@ class Js < Thor
 
     success = false if !calc_deps "closure/closure-templates"
     success = false if !calc_deps "open.core", "{open.core}"
-    success = false if !calc_deps "test"
+    success = false if !calc_deps "test", "{open.core}"
 
     puts "+ SUCCESS generating deps files" if success
     puts "- FAILED to generate deps files" if !success

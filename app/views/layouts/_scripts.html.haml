@@ -5,8 +5,9 @@
 - if !single_js_file?
 
   -# Pre-requisites.
-  = javascript_include_tag "#{domain}/javascripts/closure/closure-library/closure/goog/base.js"
   = javascript_include_tag "paths.js"
+  = javascript_include_tag "#{domain}/javascripts/closure/closure-library/closure/goog/base.js"
+  = javascript_include_tag "#{domain}/javascripts/closure/closure-templates/deps.js"
   = javascript_include_tag "loader.js"
 
   -# Application.

@@ -7,19 +7,21 @@
 # See: http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html
 #
 # --------------------------------------------------------
+require File.expand_path('app/helpers/paths.rb')
+
 
 class Css < Thor
-  CSS_PATH = "public/javascripts/open.core/assets/css"
+  include Paths
 
   desc "watch", "Start watching the .scss (Saas) files for changes."
   def watch
-    success = system("sass --watch #{CSS_PATH}/sass:#{CSS_PATH}")
+    success = system("sass --watch #{CORE_CSS_PATH}/sass:#{CORE_CSS_PATH}")
     return success
   end
 
 
   desc "build", "Builds all .scss files anywhere within a folder hierarchy to .css"
-  def build(folder = CSS_PATH)
+  def build(folder = CORE_CSS_PATH)
     puts "+ Compiling Saas stylesheets (.scss => .css)..."
     success = true
 

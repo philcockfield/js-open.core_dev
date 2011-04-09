@@ -5,12 +5,15 @@
 #   $ thor list
 #
 # --------------------------------------------------------
+require File.expand_path('app/helpers/paths.rb')
 
 class Js < Thor
-  JS_PATH = "public/javascripts"
-  CORE_PATH = "#{JS_PATH}/open.core"
-  CLOSURE_PATH = "#{JS_PATH}/closure"
-  CLOSURE_TOOLS_PATH = "#{CLOSURE_PATH}/closure-library/closure/bin"
+  include Paths
+
+#  JS_PATH = "public/javascripts"
+#  CORE_PATH = "#{JS_PATH}/open.core"
+#  CLOSURE_PATH = "#{JS_PATH}/closure"
+#  CLOSURE_TOOLS_PATH = "#{CLOSURE_PATH}/closure-library/closure/bin"
 
   desc "build", "Calls all tasks to build the project in it's entirety"
 
@@ -38,10 +41,10 @@ class Js < Thor
     puts "+ Calculating dependencies now..."
     success = true
 
-    success = false if !calc_deps "closure/closure-library/closure/goog", "{closure-lib}"
-    success = false if !calc_deps "closure/closure-templates", "{closure-tmpl}"
-    success = false if !calc_deps "open.core", "{open.core}"
-    success = false if !calc_deps "test", "{open.core}"
+    success = false if !calc_deps "#{CLOSURE_PATH}/closure-library/closure/goog", "{closure-lib}"
+    success = false if !calc_deps CLOSURE_TMPL_PATH, "{closure-tmpl}"
+    success = false if !calc_deps "#{JS_PATH}/open.core", "{open.core}"
+    success = false if !calc_deps "#{JS_PATH}/test", "{open.core}"
 
     puts "+ SUCCESS generating deps files" if success
     puts "- FAILED to generate deps files" if !success
@@ -107,11 +110,10 @@ class Js < Thor
 
 
   def calc_deps(folder, prefix = "../../../..")
-    path = "#{JS_PATH}/#{folder}"
-    output_file = "#{path}/deps.js"
+    output_file = "#{folder}/deps.js"
     success = system("
                      #{CLOSURE_TOOLS_PATH}/build/depswriter.py  \
-           --root_with_prefix='#{path} #{prefix}/#{folder}' \
+           --root_with_prefix='#{folder} #{prefix}/#{folder}' \
            > #{output_file}
                      ")
     puts "+ Generated closure dependency file at: #{output_file}" if success

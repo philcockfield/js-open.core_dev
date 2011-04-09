@@ -6,7 +6,7 @@ INIT.remoteJs = 'http://open-core.heroku.com/javascripts';
 
 INIT.defaultPath = function() {
   return INIT.local ? INIT.localJs : INIT.remoteJs;
-}
+};
 
 /**
  * URL domain mappings.

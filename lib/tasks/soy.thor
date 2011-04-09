@@ -5,9 +5,11 @@
 #   $ thor list
 #
 # --------------------------------------------------------
+require File.expand_path('app/helpers/paths.rb')
 
 class Soy < Thor
-  CLOSURE_TMPL_PATH = "#{Js::CLOSURE_PATH}/closure-templates"
+  include Paths
+
 
 
   desc "build", "Builds closure templates (.soy => .js)"

@@ -19,4 +19,5 @@ module ApplicationHelper
   def server_url
     "http://#{request.domain}:#{request.port}"
   end
+  
 end

@@ -1,6 +1,6 @@
 CoreDev::Application.routes.draw do
   get "pages/home"
-  get "javascripts/boot", :to => "pages#javascript_boot"
+  get "javascripts/init", :to => "pages#init_javascript"
 
   root :to => "pages#home"
 end

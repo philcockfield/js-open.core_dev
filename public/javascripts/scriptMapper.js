@@ -7,7 +7,7 @@
  */
 
 
-var LOADER = LOADER || {};
+var INIT = INIT || {};
 
 
 /**
@@ -24,7 +24,7 @@ var LOADER = LOADER || {};
  * script declaration.
  *
  */
-LOADER.scriptMapper = (function() {
+INIT.scriptMapper = (function() {
   var formatPath, overrideScriptWriter;
 
   formatPath = function(path) {
@@ -32,7 +32,7 @@ LOADER.scriptMapper = (function() {
     var tokenStart, tokenEnd, token;
 
     // Setup initial conditions.
-    paths = LOADER.paths;
+    paths = INIT.paths;
 
     if (!paths) {
       throw '[LOADER.paths] containing the URLs required to ' +
@@ -52,7 +52,7 @@ LOADER.scriptMapper = (function() {
     // Swap out the token.
     if (token) {
       mapValue = paths[token];
-      if (!mapValue) {
+      if (mapValue === undefined) {
         throw 'The path token ' + token + ' is not mapped to a value. ' +
                 'Include it within the [LOADER.paths] ' +
                 'mapping object on the page.';

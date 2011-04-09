@@ -24,7 +24,7 @@ var INIT = INIT || {};
  * script declaration.
  *
  */
-INIT.scriptMapper = (function() {
+INIT.pathMapper = (function() {
   var formatPath, overrideScriptWriter;
 
   formatPath = function(path) {

@@ -8,7 +8,7 @@ class JavascriptInit
     closure_lib_path = "#{CLOSURE_PATH}/closure-library/closure/goog/"
     deps_js = "deps.js"
     base_js = "base.js"
-    script_mapper_js = "scriptMapper.js"
+    script_mapper_js = "pathMapper.js"
 
     # Opening comments.
     js = title("   [Open.Core] Page Initialization

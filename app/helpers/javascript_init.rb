@@ -8,7 +8,7 @@ class JavascriptInit
     closure_lib_path = "#{CLOSURE_PATH}/closure-library/closure/goog/"
     deps_js = "deps.js"
     base_js = "base.js"
-    script_mapper_js = "pathMapper.js"
+    path_mapper_js = "pathMapper.js"
 
     # Opening comments.
     js = title("   [Open.Core] Page Initialization
@@ -19,7 +19,7 @@ class JavascriptInit
  *     - closure-tools:      /#{base_js}
  *     - closure-tools:      /#{deps_js}
  *     - closure-templates:  /#{deps_js}
- *   - Open.Core:            /#{script_mapper_js}
+ *   - Open.Core:            /#{path_mapper_js}
  *")
 
     # Prevent closure from loading it's own deps.js file as
@@ -30,7 +30,7 @@ class JavascriptInit
     js << file_to_s("Closure Tools [base.js]", "#{closure_lib_path}/#{base_js}")
     js << file_to_s("Closure Tools [deps.js]", "#{closure_lib_path}/#{deps_js}")
     js << file_to_s("Closure Templates [deps.js]", "#{CLOSURE_PATH}/closure-templates/#{deps_js}")
-    js << file_to_s("Open.Core [init.js]", "#{JS_PATH}/#{script_mapper_js}")
+    js << file_to_s("Open.Core [init.js]", "#{JS_PATH}/#{path_mapper_js}")
 
     js
   end

@@ -1,5 +1,5 @@
 # --------------------------------------------------------
-# Build the Google Closure templates (.soy)
+# Build the Google Closure templates
 #
 # Commands:
 #   $ thor list
@@ -7,15 +7,16 @@
 # --------------------------------------------------------
 require File.expand_path('app/helpers/paths.rb')
 
-class Soy < Thor
+class Tmpl < Thor
   include Paths
 
+  TEMPLATE_EXTENSION = ".soy"
 
 
-  desc "build", "Builds closure templates (.soy => .js)"
+  desc "build", "Builds closure templates (#{TEMPLATE_EXTENSION} => .js)"
 
   def build(path = Js::JS_PATH)
-    puts "+ Compiling soy templates (.soy => .js)"
+    puts "+ Compiling soy templates (#{TEMPLATE_EXTENSION} => .js)"
 
     success = compile_templates(path)
 
@@ -30,10 +31,9 @@ class Soy < Thor
 
   def compile_templates(folder_path)
     success = true
-    Dir["#{folder_path}/**/**"].each do |path|
-      is_soy = path.match(/.soy$/).to_s == '.soy'
-      if (is_soy && !hidden?(path))
-        file_name = File.basename(path, ".soy")
+    Dir["#{folder_path}/**/**/*#{TEMPLATE_EXTENSION}"].each do |path|
+      if (!hidden?(path))
+        file_name = File.basename(path, TEMPLATE_EXTENSION)
         dir_name = File.dirname(path)
         success = false if !compile_template(dir_name, file_name)
       end
@@ -44,7 +44,7 @@ class Soy < Thor
 
   def compile_template(path, file_name)
     compiler = "#{CLOSURE_TMPL_PATH}/SoyToJsSrcCompiler.jar"
-    input_file = "#{path}/#{file_name}.soy"
+    input_file = "#{path}/#{file_name}#{TEMPLATE_EXTENSION}"
     output_file = "#{path}/#{file_name}.tmpl.js"
 
     success = system("

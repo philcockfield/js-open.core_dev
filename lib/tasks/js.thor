@@ -23,7 +23,7 @@ class Js < Thor
     write_build_title "START", project
     success = true
 
-    success = false if !Soy.new.build
+    success = false if !Tmpl.new.build
     success = false if !Css.new.build
     success = false if !deps
     success = false if !lint

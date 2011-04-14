@@ -9,7 +9,7 @@ goog.provide('open.core.reflection');
  * @return {boolean} true if the child instance is
  *          based on the parent's prototype.
  */
-open.core.isTypeOf = function(childInstance, parentObject) {
+open.core.isInstanceOfType = function(childInstance, parentObject) {
   // Setup initial conditions.
   if (!childInstance || !parentObject) return false;
 

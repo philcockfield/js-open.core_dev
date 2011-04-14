@@ -7,7 +7,7 @@
  */
 
 
-var INIT = INIT || {};
+var LOADER = LOADER || {};
 
 
 /**
@@ -24,7 +24,7 @@ var INIT = INIT || {};
  * script declaration.
  *
  */
-INIT.pathMapper = (function() {
+LOADER.pathMapper = (function() {
   var formatPath, overrideScriptWriter;
 
   formatPath = function(path) {
@@ -32,7 +32,7 @@ INIT.pathMapper = (function() {
     var tokenStart, tokenEnd, token;
 
     // Setup initial conditions.
-    paths = INIT.paths;
+    paths = LOADER.paths;
 
     if (!paths) {
       throw '[LOADER.paths] containing the URLs required to ' +
@@ -60,6 +60,21 @@ INIT.pathMapper = (function() {
 
       path = mapValue + path;
     }
+
+    // Prepend 'public/' if the page is running within the Jasmine BDD
+    // test-runner (and it not calling an external HTTP resource).
+    if (window.location.port === '8888') {
+      isHttp = path.substr(0, 4) === 'http';
+      if (!isHttp) {
+        path = '/public' + path;
+      }
+    }
+
+    // Prepend query-string to prevent caching.
+    path += '?' + new Date().getTime();
+
+
+    // Finish up.
     return path;
   };
 
@@ -83,7 +98,7 @@ INIT.pathMapper = (function() {
       // Pass execution to the script writer.
       return googTagWriter(src);
     };
-  }
+  };
 
 
   // Finish up.

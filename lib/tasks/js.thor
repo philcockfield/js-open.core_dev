@@ -111,9 +111,13 @@ class Js < Thor
 
   def calc_deps(folder, prefix = "../../../..")
     output_file = "#{folder}/deps.js"
+
+    # Remove the 'public/' prefix - causes pathing error.
+    sub_folder = folder.gsub("public/", "")
+
     success = system("
                      #{CLOSURE_TOOLS_PATH}/build/depswriter.py  \
-           --root_with_prefix='#{folder} #{prefix}/#{folder}' \
+           --root_with_prefix='#{folder} #{prefix}/#{sub_folder}' \
            > #{output_file}
                      ")
     puts "+ Generated closure dependency file at: #{output_file}" if success

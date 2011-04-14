@@ -1,19 +1,19 @@
-var INIT = INIT || {};
-INIT.local = true;
+var LOADER = LOADER || {};
+LOADER.local = true;
 
-INIT.localJs = '/javascripts';
-INIT.remoteJs = 'http://open-core.heroku.com/javascripts';
+LOADER.localJs = '';
+LOADER.remoteJs = 'http://open-core.heroku.com/javascripts';
 
-INIT.defaultPath = function() {
-  return INIT.local ? INIT.localJs : INIT.remoteJs;
+LOADER.defaultPath = function() {
+  return LOADER.local ? LOADER.localJs : LOADER.remoteJs;
 };
 
 /**
  * URL domain mappings.
  */
-INIT.paths = {
-  '{open.core}': INIT.defaultPath(),
-  '{closure-lib}': INIT.defaultPath(),
-  '{closure-tmpl}': INIT.defaultPath()
+LOADER.paths = {
+  '{open.core}': LOADER.defaultPath(),
+  '{closure-lib}': LOADER.defaultPath(),
+  '{closure-tmpl}': LOADER.defaultPath()
 };
 

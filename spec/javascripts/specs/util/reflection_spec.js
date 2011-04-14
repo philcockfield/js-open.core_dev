@@ -3,13 +3,13 @@ goog.require('lib.backbone');
 
 
 describe('open.core.reflection', function() {
-  describe('isTypeOf', function() {
-    var isTypeOf;
+  describe('isInstanceOfType', function() {
+    var isInstanceOfType;
     var Parent, parent;
     var Child, child;
 
     beforeEach(function() {
-      isTypeOf = open.core.isTypeOf;
+      isInstanceOfType = open.core.isInstanceOfType;
 
       Parent = Backbone.Model.extend({ foo: 'bar' });
       Child = Parent.extend();
@@ -27,33 +27,33 @@ describe('open.core.reflection', function() {
 
     describe('is match', function() {
       it('when derived instance supplied', function() {
-        expect(isTypeOf(child, Parent)).toBeTruthy();
+        expect(isInstanceOfType(child, Parent)).toBeTruthy();
       });
 
       it('when same child type supplied', function() {
-        expect(isTypeOf(child, Child)).toBeTruthy();
+        expect(isInstanceOfType(child, Child)).toBeTruthy();
       });
     });
 
     describe('is not match', function() {
       it('when instance value is undefined', function() {
-        expect(isTypeOf(null, Parent)).toBeFalsy();
+        expect(isInstanceOfType(null, Parent)).toBeFalsy();
       });
 
       it('when compareTo value is undefined', function() {
-        expect(isTypeOf(child, null)).toBeFalsy();
+        expect(isInstanceOfType(child, null)).toBeFalsy();
       });
 
       it('when both values are undefined', function() {
-        expect(isTypeOf(null, null)).toBeFalsy();
+        expect(isInstanceOfType(null, null)).toBeFalsy();
       });
 
       it('when values are not derived from the same prototype', function() {
-        expect(isTypeOf(child, 1234)).toBeFalsy();
+        expect(isInstanceOfType(child, 1234)).toBeFalsy();
       });
 
       it('when child of parent is supplied', function() {
-        expect(isTypeOf(Parent, child)).toBeFalsy();
+        expect(isInstanceOfType(Parent, child)).toBeFalsy();
       });
     });
   });

@@ -24,6 +24,7 @@ LOADER.paths = {
   coreFolder: LOADER.coreDomain() + '/javascripts/open.core/trunk',
 
   '{open.core}': LOADER.coreDomain(),
+  '{harness}': LOADER.coreDomain(),
   '{closure-lib}': LOADER.coreDomain(),
   '{closure-tmpl}': LOADER.coreDomain()
 };

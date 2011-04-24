@@ -33,6 +33,4 @@ module Constants
 
   HARNESS_URL = "/javascripts/#{HARNESS_FOLDER}/#{HARNESS_VERSION}"
   HARNESS_CSS_URL = "#{HARNESS_URL}/assets/css"
-  
-
 end

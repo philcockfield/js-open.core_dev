@@ -44,6 +44,7 @@ class Js < Thor
     success = false if !calc_deps "#{CLOSURE_PATH}/closure-library/closure/goog", "{closure-lib}"
     success = false if !calc_deps CLOSURE_TMPL_PATH, "{closure-tmpl}"
     success = false if !calc_deps CORE_PATH, "{open.core}"
+    success = false if !calc_deps HARNESS_PATH, "{harness}"
     success = false if !calc_deps "#{JS_PATH}/test", "{open.core}"
 
     puts "+ SUCCESS generating deps files" if success

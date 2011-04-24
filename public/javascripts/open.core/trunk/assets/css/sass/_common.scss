@@ -1,0 +1,11 @@
+@import "primitives";
+
+
+// ------------------------------------------------------
+//                        Text
+// ------------------------------------------------------
+$font_myriad: "myriad-pro-1","myriad-pro-2";
+
+.myriad {
+  font-family: $font_myriad;
+}

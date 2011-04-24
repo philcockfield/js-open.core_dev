@@ -13,14 +13,26 @@ require File.expand_path('app/util/constants.rb')
 class Css < Thor
   include Constants
 
-  desc "watch", "Start watching the .scss (Saas) files for changes."
-  def watch
-    success = system("sass --watch #{CORE_CSS_PATH}/sass:#{CORE_CSS_PATH}")
+  desc "watch [NAME]", "Start watching the .scss (Saas) files for changes."
+
+  def watch(name = "core")
+    success = true
+
+    case name
+      when "core"
+        success = false if !watch_folder(CORE_CSS_PATH)
+      when "harness"
+        success = false if !watch_folder(HARNESS_CSS_PATH)
+      else
+        puts "Don't know what '#{name}' is."
+    end
+
     return success
   end
 
 
   desc "build", "Builds all .scss files anywhere within a folder hierarchy to .css"
+
   def build(folder = CORE_CSS_PATH)
     puts "+ Compiling Saas stylesheets (.scss => .css)..."
     success = true
@@ -30,7 +42,6 @@ class Css < Thor
         name = File.basename(path, ".scss")
         parent_path = Pathname.new(File.dirname("#{path}")).parent
         output_file = "#{parent_path}/#{name}.css"
-
 
 
         success = false if !system("sass #{path} #{output_file}")
@@ -52,5 +63,10 @@ class Css < Thor
     return false if File.directory?(path)
     return false if File.basename(path).match(/^_/).to_s == "_"
     true
+  end
+
+
+  def watch_folder(folder)
+    system("sass --watch #{folder}/sass:#{folder}")
   end
 end

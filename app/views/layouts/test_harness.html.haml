@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title TestHarness
+    = csrf_meta_tag
+    = render 'harness/head/stylesheets'
+    = render 'harness/head/scripts'
+  %body
+    = yield

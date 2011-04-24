@@ -1,0 +1,9 @@
+/ Scripts
+- if !single_js_file? || true # TEMP : Always load for debugging
+
+  -# Pre-requisites.
+  = render 'layouts/scripts/prerequisites'
+
+  -# Application.
+  = javascript_include_tag "test/deps.js"
+  = javascript_include_tag "application.js"

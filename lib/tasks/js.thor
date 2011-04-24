@@ -5,7 +5,7 @@
 #   $ thor list
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/constants.rb')
+require File.expand_path('app/util/constants.rb')
 
 class Js < Thor
   include Constants
@@ -43,7 +43,7 @@ class Js < Thor
 
     success = false if !calc_deps "#{CLOSURE_PATH}/closure-library/closure/goog", "{closure-lib}"
     success = false if !calc_deps CLOSURE_TMPL_PATH, "{closure-tmpl}"
-    success = false if !calc_deps "#{JS_PATH}/open.core", "{open.core}"
+    success = false if !calc_deps CORE_PATH, "{open.core}"
     success = false if !calc_deps "#{JS_PATH}/test", "{open.core}"
 
     puts "+ SUCCESS generating deps files" if success
@@ -57,7 +57,7 @@ class Js < Thor
   def lint
     puts "+ Running JS Linter now..."
     puts "--"
-    lint_on JS_PATH, "#{CORE_PATH}/lib, #{JS_PATH}/closure"
+    lint_on JS_PATH, "#{CORE_PATH}/lib, #{CLOSURE_PATH}"
   end
 
   desc "lint_help", "Outputs the lint option flags"
@@ -68,6 +68,7 @@ class Js < Thor
 
 
   desc "tmpl", "Builds all soy templates (see tmpl.thor)"
+
   def tmpl
     Tmpl.new.build
   end
@@ -101,7 +102,7 @@ class Js < Thor
                           --nojsdoc \
                           --recurse #{path} \
                           --exclude_directories '#{exclude_dirs}' \
-                          --exclude_files 'application-single.js, deps.js, #{get_tmpl_files(path)}'
+                          --exclude_files 'application-single.js, deps.js, init.js, #{get_tmpl_files(path, '.tmpl.js')}'
                      ")
     puts "+ Lint successful within folder: #{path}" if success
     puts "- Lint FAILED within folder: #{path}" if !success
@@ -109,8 +110,8 @@ class Js < Thor
     success
   end
 
-  def get_tmpl_files(path)
-    Dir["#{path}/**/*.tmpl.js"].collect { |f| File.basename(f) }.join(", ")
+  def get_tmpl_files(path, ends_with)
+    Dir["#{path}/**/*#{ends_with}"].collect { |f| File.basename(f) }.join(", ")
   end
 
 

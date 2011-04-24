@@ -11,11 +11,9 @@
 #   - dist/**/*.js
 #
 src_files:
-  - public/javascripts/paths.js
-  - public/javascripts/closure/2011_04_06/closure-library/closure/goog/base.js
-  - public/javascripts/closure/2011_04_06/closure-templates/deps.js
-  - public/javascripts/open.core/deps.js
-  - public/javascripts/path_mapper.js
+  - public/javascripts/open.core/trunk/paths/paths_local.js
+  - public/javascripts/open.core/trunk/init.js
+  - public/javascripts/open.core/trunk/deps.js
 
 
 # stylesheets

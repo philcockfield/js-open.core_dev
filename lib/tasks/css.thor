@@ -7,7 +7,7 @@
 # See: http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/constants.rb')
+require File.expand_path('app/util/constants.rb')
 
 
 class Css < Thor

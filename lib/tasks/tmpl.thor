@@ -5,7 +5,7 @@
 #   $ thor list
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/constants.rb')
+require File.expand_path('app/util/constants.rb')
 
 
 class Tmpl < Thor

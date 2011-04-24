@@ -1,7 +1,7 @@
 goog.provide('open.core.testing.util');
 
-goog.require('lib.underscore');
 goog.require('goog.string');
+goog.require('lib.underscore');
 
 /**
  * Returns a string of 'lorem ipsum'.

@@ -1,15 +1,13 @@
-- remote = false
-- domain = remote ? "http://open-core.heroku.com" : ""
 
 / Scripts
+%script{:type => 'text/javascript', :src => 'http://use.typekit.com/rpd3lgt.js'}
 
 - if !single_js_file?
 
   -# Pre-requisites.
-  = javascript_include_tag "paths.js"
-  = javascript_include_tag "#{domain}/javascripts/init"
+  = javascript_include_tag "/js/paths.js"
+  = javascript_include_tag "/js/init.js"
 
   -# Application.
-  = javascript_include_tag "open.core/deps.js"
   = javascript_include_tag "test/deps.js"
   = javascript_include_tag "application.js"

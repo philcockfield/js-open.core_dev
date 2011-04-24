@@ -1,5 +1,5 @@
 / CSS
-- css_path = '/javascripts/open.core/assets/css'
+- css_path = "#{Constants::CORE_CSS_URL}"
 
 /[if lt IE 9]
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -9,4 +9,7 @@
 /[if lt IE 8]
   = stylesheet_link_tag "#{css_path}/blueprint/ie"
 
-= stylesheet_link_tag("#{css_path}/all.css")
+/ Open.Core
+= stylesheet_link_tag("#{css_path}/root.css")
+
+

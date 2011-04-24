@@ -1,0 +1,58 @@
+@import "common";
+
+
+// ------------------------------------------------------
+//                        Constants
+// ------------------------------------------------------
+
+$header_height: 43;
+$footer_height: 43;
+$left_width: 320;
+$header_footer_border_color: #797f8f;
+
+
+// ------------------------------------------------------
+//                        Mixins
+// ------------------------------------------------------
+@mixin shell_bar_bg() {
+  $default: #e0e1e6;
+  $top:     #f5f5f7;
+  $bottom:  #a6acba;
+  @include gradient_y($default, $top, $bottom);
+}
+
+
+
+// ------------------------------------------------------
+//                     Shell Structure
+// ------------------------------------------------------
+.core.shell.ipad {
+  @include abs_pos();
+  background: $white;
+
+  .header {
+    @include shell_bar_bg();
+    @include abs_pos(0, 0, 0, nil);
+    height: #{$header_height}px;
+    border-bottom: solid 1px $header_footer_border_color;
+   }
+
+   .footer {
+    @include shell_bar_bg();
+    @include abs_pos(0, nil, 0, 0);
+    height: #{$footer_height}px;
+    border-top: solid 1px $header_footer_border_color;
+   }
+
+  .left {
+    @include abs_pos(0, 0, nil, 0);
+    width: #{$left_width}px;
+    border-right: solid 1px darken($white, 70%);
+    background: #f5f5f5;
+  }
+
+  .main {
+    @include abs_pos($left_width + 1, 0, 0, 0);
+  }
+
+}

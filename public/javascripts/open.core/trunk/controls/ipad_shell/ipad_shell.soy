@@ -1,0 +1,38 @@
+{namespace core.controls.iPadShell.tmpl}
+
+
+/**
+* The root template.
+*/
+{template .root}
+  <div class="left">
+    {call .header data="all" /}
+    {call .footer data="all" /}
+  </div>
+  <div class="main">
+    {call .header data="all" /}
+    {call .footer data="all" /}
+  </div>
+{/template}
+        
+        
+        
+/**
+* A header panel.
+*/
+{template .header}
+  <div class="header">
+    <div class="bevel highlight"></div>
+  </div>
+{/template}
+
+
+/**
+* A footer panel.
+*/
+{template .footer}
+  <div class="footer">
+    <div class="bevel highlight"></div>
+  </div>
+{/template}
+

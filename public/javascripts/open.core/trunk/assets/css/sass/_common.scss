@@ -9,3 +9,13 @@ $font_myriad: "myriad-pro-1","myriad-pro-2";
 .myriad {
   font-family: $font_myriad;
 }
+
+
+// ------------------------------------------------------
+//                    Structures
+// ------------------------------------------------------
+div.bevel.highlight {
+  @include abs_pos(0, 0, 0, nil);
+  height: 1px;
+  background: $white;
+}

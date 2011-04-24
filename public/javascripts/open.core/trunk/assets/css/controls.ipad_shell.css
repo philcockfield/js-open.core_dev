@@ -9,17 +9,6 @@ div.bevel.highlight {
   height: 1px;
   background: white; }
 
-.myriad {
-  font-family: "myriad-pro-1", "myriad-pro-2"; }
-
-div.bevel.highlight {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  height: 1px;
-  background: white; }
-
 .core.shell.ipad {
   position: absolute;
   left: 0px;

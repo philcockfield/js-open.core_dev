@@ -49,10 +49,26 @@ $header_footer_border_color: #797f8f;
     width: #{$left_width}px;
     border-right: solid 1px darken($white, 70%);
     background: #f5f5f5;
+
+    .region {
+      @include abs_pos(0, $header_height + 1, 0, $footer_height + 1);
+    }
   }
 
   .main {
     @include abs_pos($left_width + 1, 0, 0, 0);
+    .region {
+      @include abs_pos(0, $header_height + 1, 0, $footer_height + 1);
+    }
   }
+
+  .header > .region {
+    @include abs_pos();
+  }
+
+  .footer > .region {
+    @include abs_pos();
+  }
+
 
 }

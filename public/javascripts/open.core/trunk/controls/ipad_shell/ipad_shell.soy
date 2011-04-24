@@ -7,10 +7,12 @@
 {template .root}
   <div class="left">
     {call .header data="all" /}
+    <div class="region"></div>
     {call .footer data="all" /}
   </div>
   <div class="main">
     {call .header data="all" /}
+    <div class="region"></div>
     {call .footer data="all" /}
   </div>
 {/template}
@@ -23,6 +25,7 @@
 {template .header}
   <div class="header">
     <div class="bevel highlight"></div>
+    <div class="region"></div>
   </div>
 {/template}
 
@@ -33,6 +36,7 @@
 {template .footer}
   <div class="footer">
     <div class="bevel highlight"></div>
+    <div class="region"></div>
   </div>
 {/template}
 

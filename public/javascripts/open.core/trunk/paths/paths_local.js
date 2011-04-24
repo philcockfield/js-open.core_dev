@@ -2,7 +2,7 @@ var LOADER = LOADER || {};
 LOADER.useLocal = true;
 
 LOADER.coreLocal = 'http://localhost:3333';
-LOADER.coreRemote = 'http://opencore.heroku.com/javascripts';
+LOADER.coreRemote = 'http://opencore.heroku.com';
 
 
 LOADER.coreDomain = function() {

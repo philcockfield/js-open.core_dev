@@ -46,9 +46,33 @@ div.bevel.highlight {
     width: 320px;
     border-right: solid 1px #4d4d4d;
     background: #f5f5f5; }
+    .core.shell.ipad .left .region {
+      position: absolute;
+      left: 0px;
+      top: 44px;
+      right: 0px;
+      bottom: 44px; }
   .core.shell.ipad .main {
     position: absolute;
     left: 321px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px; }
+    .core.shell.ipad .main .region {
+      position: absolute;
+      left: 0px;
+      top: 44px;
+      right: 0px;
+      bottom: 44px; }
+  .core.shell.ipad .header > .region {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px; }
+  .core.shell.ipad .footer > .region {
+    position: absolute;
+    left: 0px;
     top: 0px;
     right: 0px;
     bottom: 0px; }

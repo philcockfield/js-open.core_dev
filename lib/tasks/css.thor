@@ -7,11 +7,11 @@
 # See: http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/paths.rb')
+require File.expand_path('app/helpers/constants.rb')
 
 
 class Css < Thor
-  include Paths
+  include Constants
 
   desc "watch", "Start watching the .scss (Saas) files for changes."
   def watch

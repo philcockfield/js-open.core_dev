@@ -5,10 +5,10 @@
 #   $ thor list
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/paths.rb')
+require File.expand_path('app/helpers/constants.rb')
 
 class Js < Thor
-  include Paths
+  include Constants
 
 #  JS_PATH = "public/javascripts"
 #  CORE_PATH = "#{JS_PATH}/open.core"
@@ -66,6 +66,11 @@ class Js < Thor
     system("gjslint --help")
   end
 
+
+  desc "tmpl", "Builds all soy templates (see tmpl.thor)"
+  def tmpl
+    Tmpl.new.build
+  end
 
   desc "single", "Copies all dependencies into a single JavaScript file"
 

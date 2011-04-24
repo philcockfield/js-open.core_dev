@@ -1,4 +1,4 @@
-module Paths
+module Constants
   JS_PATH = "public/javascripts"
   CORE_PATH = "#{JS_PATH}/open.core"
   CORE_CSS_PATH = "#{CORE_PATH}/assets/css"

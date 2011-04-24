@@ -5,10 +5,11 @@
 #   $ thor list
 #
 # --------------------------------------------------------
-require File.expand_path('app/helpers/paths.rb')
+require File.expand_path('app/helpers/constants.rb')
+
 
 class Tmpl < Thor
-  include Paths
+  include Constants
 
   TEMPLATE_EXTENSION = ".soy"
 

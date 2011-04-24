@@ -55,17 +55,8 @@ For example:
 ---
 ## Google Closure
 
-Open.Core uses [Google Closure Tools](http://code.google.com/closure/) for dependency management and minification (compiling). 
-If you want to use Google Closure too, pull the
-[closure-library](https://github.com/jarib/google-closure-library.git public/javascripts/closure-library)
-into your project, like this:
-
-`git submodule add https://github.com/jarib/google-closure-library.git public/javascripts/closure-library`
-
-_Note: You may want to keep closure-library outside of your project repository, however we find that during development
-it's easiest to keep it within your static javascripts folder (wherever that happens to be).
-This makes it easy to reference and serve all the loose .js files it needs to while in debug mode.
-Then in production, only the self-contained compiled .js files (ether a single file, or just a few) are deployed._
+Open.Core uses [Google Closure Tools](http://code.google.com/closure/) for dependency management
+and minification (compiling). 
 
 
 ### Building and Linting JavaScript with Closure Tools

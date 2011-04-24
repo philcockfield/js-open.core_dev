@@ -13,7 +13,11 @@ class JavascriptPaths
     js = js.gsub("{{USE_LOCAL}}", use_local.to_s)
     js = js.gsub("{{CORE_SERVER_LOCAL}}", Constants::CORE_SERVER_LOCAL)
     js = js.gsub("{{CORE_SERVER_REMOTE}}", Constants::CORE_SERVER_REMOTE)
+    js = js.gsub("{{CORE_FOLDER}}", Constants::CORE_FOLDER)
     js = js.gsub("{{CORE_VERSION}}", Constants::CORE_VERSION)
+
+    js = js.gsub("{{HARNESS_FOLDER}}", Constants::HARNESS_FOLDER)
+    js = js.gsub("{{HARNESS_VERSION}}", Constants::CORE_VERSION)
 
     # Finish up.
     @js = js

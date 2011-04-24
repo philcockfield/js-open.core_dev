@@ -21,7 +21,10 @@ LOADER.coreDomain = function() {
  * URL domain mappings.
  */
 LOADER.paths = {
-  coreFolder: LOADER.coreDomain() + '/javascripts/open.core/trunk',
+  folder: {
+    core: LOADER.coreDomain() + '/javascripts/open.core/trunk',
+    harness: LOADER.coreDomain() + '/javascripts/harness/trunk'
+  },
 
   '{open.core}': LOADER.coreDomain(),
   '{harness}': LOADER.coreDomain(),

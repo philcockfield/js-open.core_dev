@@ -2,7 +2,7 @@ var LOADER = LOADER || {};
 LOADER.useLocal = {{USE_LOCAL}};
 
 LOADER.coreLocal = '{{CORE_SERVER_LOCAL}}';
-LOADER.coreRemote = '{{CORE_SERVER_REMOTE}}/javascripts';
+LOADER.coreRemote = '{{CORE_SERVER_REMOTE}}';
 
 
 LOADER.coreDomain = function() {
@@ -21,7 +21,10 @@ LOADER.coreDomain = function() {
  * URL domain mappings.
  */
 LOADER.paths = {
-  coreFolder: LOADER.coreDomain() + '/javascripts/open.core/{{CORE_VERSION}}',
+  folder: {
+    core: LOADER.coreDomain() + '/javascripts/{{CORE_FOLDER}}/{{CORE_VERSION}}',
+    harness: LOADER.coreDomain() + '/javascripts/{{HARNESS_FOLDER}}/{{HARNESS_VERSION}}'
+  },
 
   '{open.core}': LOADER.coreDomain(),
   '{harness}': LOADER.coreDomain(),

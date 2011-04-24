@@ -1,4 +1,4 @@
-goog.provide('open.core.testing.util');
+goog.provide('core.testing.util');
 
 goog.require('goog.string');
 goog.require('lib.underscore');
@@ -10,7 +10,7 @@ goog.require('lib.underscore');
  *                  should be prefixed with a full stop.
  *
  */
-open.core.testing.loremIpsum = (function() {
+core.testing.loremIpsum = (function() {
   var raw = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
           'Maecenas vel eleifend nisl. Suspendisse tristique dignissim ' +
           'leo ut auctor. Cras convallis purus sed massa placerat sed ' +

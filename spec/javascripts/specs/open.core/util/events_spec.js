@@ -1,10 +1,10 @@
-goog.require('open.core.events');
+goog.require('core.events');
 
 
-describe('open.core.events', function() {
+describe('core: util/events_spec', function() {
   describe('API', function() {
-    it('is exposed from [open.core]', function() {
-      expect(open.core.events).toBeDefined();
+    it('is exposed from [core]', function() {
+      expect(core.events).toBeDefined();
     });
   });
 
@@ -12,7 +12,7 @@ describe('open.core.events', function() {
     var events;
 
     beforeEach(function() {
-      events = open.core.events;
+      events = core.events;
     });
 
     it('responds to a subscribed event when it is published', function() {

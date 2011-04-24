@@ -1,15 +1,15 @@
-goog.require('open.core.testing.util');
+goog.require('core.testing.util');
 
 
-describe('open.core.testing.util', function() {
+describe('core: testing/testing_util_spec', function() {
   var loremIpsum;
 
   beforeEach(function() {
-    loremIpsum = open.core.testing.loremIpsum;
+    loremIpsum = core.testing.loremIpsum;
   });
 
   it('is provided', function() {
-    expect(open.core.testing.util).toBeDefined();
+    expect(core.testing.util).toBeDefined();
   });
 
 

@@ -1,15 +1,15 @@
-goog.require('open.core.reflection');
+goog.require('core.reflection');
 goog.require('lib.backbone');
 
 
-describe('open.core.reflection', function() {
+describe('core: util/reflection_spec', function() {
   describe('isInstanceOfType', function() {
     var isInstanceOfType;
     var Parent, parent;
     var Child, child;
 
     beforeEach(function() {
-      isInstanceOfType = open.core.isInstanceOfType;
+      isInstanceOfType = core.isInstanceOfType;
 
       Parent = Backbone.Model.extend({ foo: 'bar' });
       Child = Parent.extend();

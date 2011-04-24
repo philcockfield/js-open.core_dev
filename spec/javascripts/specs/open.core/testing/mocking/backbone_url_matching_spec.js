@@ -1,6 +1,6 @@
-goog.require('open.core.testing.backbone');
+goog.require('core.testing.backbone');
 
-describe('Backbone matching URLs with mock data', function() {
+describe('core: testing/backbone_url_matching_spec', function() {
   var fakeValue, Model;
 
   beforeEach(function() {
@@ -18,8 +18,8 @@ describe('Backbone matching URLs with mock data', function() {
 
 
   describe('namespace', function() {
-    it('provides: open.core.testing.backbone', function() {
-      expect(open.core.testing.backbone).toBeDefined();
+    it('is provided', function() {
+      expect(core.testing.backbone).toBeDefined();
     });
 
     it('exposes Backbone.mock', function() {

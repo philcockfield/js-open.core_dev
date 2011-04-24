@@ -1,4 +1,4 @@
-describe("Mocking Backbone AJAX calls (via jQuery)", function() {
+describe("core: testing/backbone_ajax_spec (via jQuery)", function() {
   var Model, model;
   var request, fakeResponse;
 

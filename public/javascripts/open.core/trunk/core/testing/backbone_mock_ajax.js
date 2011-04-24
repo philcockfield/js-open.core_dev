@@ -1,4 +1,4 @@
-goog.provide('open.core.testing.backbone');
+goog.provide('core.testing.backbone');
 
 goog.require('lib.backbone');
 goog.require('lib.jasmine.mock.ajax');

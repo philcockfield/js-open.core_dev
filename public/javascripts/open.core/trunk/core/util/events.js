@@ -1,4 +1,4 @@
-goog.provide('open.core.events');
+goog.provide('core.events');
 
 goog.require('lib.jquery');
 
@@ -13,7 +13,7 @@ goog.require('lib.jquery');
 *
 * Source: https://gist.github.com/661855
 */
-open.core.events = function() {
+core.events = function() {
 
   // Create a "dummy" jQuery object on which to bind, unbind and trigger event
   // handlers. Note that $({}) works in jQuery 1.4.3+, but because .unbind on

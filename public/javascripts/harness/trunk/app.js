@@ -20,6 +20,7 @@ $(function() {
  * Entry point for the TestHarness.
  */
 harness.start = function() {
+  var shell;
   var createRoot = function() {
 
     // Create the iPad shell.
@@ -31,7 +32,12 @@ harness.start = function() {
     // Finish up.
     return view.model;
   };
-  createRoot();
+  shell = createRoot();
+
+  shell.renderMainHtml('harness/welcome', function() {
+    console.log('Rendered Main');
+  });
+
 };
 
 

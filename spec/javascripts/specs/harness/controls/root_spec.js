@@ -34,6 +34,10 @@ describe('harness: controls/root_spec', function() {
     it('calls base constructor', function() {
       expect(model.isVisible).toBeDefined();
     });
+
+    it('has a renderMainHtml method (set from the view)', function() {
+      expect(model.renderMainHtml).toEqual(view.renderMainHtml);
+    });
   });
 
 
@@ -52,6 +56,10 @@ describe('harness: controls/root_spec', function() {
 
     it('prepends the harness CSS class', function() {
       expect(view.el.className).toEqual('core shell ipad harness');
+    });
+
+    it('exposes the shells regions', function() {
+      expect(view.regions).toEqual(view.shell.regions);
     });
 
     describe('paths', function() {

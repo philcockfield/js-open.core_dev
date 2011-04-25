@@ -19,6 +19,8 @@ class Css < Thor
     success = true
 
     case name
+      when "open"
+        success = false if !watch_folder(CORE_CSS_PATH)
       when "core"
         success = false if !watch_folder(CORE_CSS_PATH)
       when "harness"

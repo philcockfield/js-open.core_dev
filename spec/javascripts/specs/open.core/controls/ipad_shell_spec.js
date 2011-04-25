@@ -67,6 +67,11 @@ describe('core: controls/iPad_shell_spec', function() {
           expect(view.regions.left.header).toEqual(view.$('.left .header .region').get(0));
         });
 
+        it('has body region', function() {
+          expect(view.regions.left.body).toBeDefined();
+          expect(view.regions.left.body).toEqual(view.$('.left > .region').get(0));
+        });
+
         it('has footer region', function() {
           expect(view.regions.left.footer).toBeDefined();
           expect(view.regions.left.footer).toEqual(view.$('.left .footer .region').get(0));
@@ -77,6 +82,11 @@ describe('core: controls/iPad_shell_spec', function() {
         it('has header region', function() {
           expect(view.regions.main.header).toBeDefined();
           expect(view.regions.main.header).toEqual(view.$('.main .header .region').get(0));
+        });
+
+        it('has body region', function() {
+          expect(view.regions.main.body).toBeDefined();
+          expect(view.regions.main.body).toEqual(view.$('.main > .region').get(0));
         });
 
         it('has footer region', function() {

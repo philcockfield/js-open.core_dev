@@ -3,6 +3,6 @@
 goog.addDependency('{harness}/javascripts/harness/trunk/app.js', ['harness.app'], ['harness.controls.root.View', 'lib.jquery']);
 goog.addDependency('{harness}/javascripts/harness/trunk/controls/root/root.model.js', ['harness.controls.root.Model'], ['core.models.Control']);
 goog.addDependency('{harness}/javascripts/harness/trunk/controls/root/root.tmpl.js', ['harness.controls.root.tmpl'], ['soy', 'soy.StringBuilder']);
-goog.addDependency('{harness}/javascripts/harness/trunk/controls/root/root.view.js', ['harness.controls.root.View'], ['core.controls.iPadShell.View', 'core.mvc.Model', 'core.mvc.View', 'harness.controls.root.Model', 'harness.global', 'lib.backbone']);
+goog.addDependency('{harness}/javascripts/harness/trunk/controls/root/root.view.js', ['harness.controls.root.View'], ['core.controls.iPadShell.View', 'core.mvc.Model', 'core.mvc.View', 'harness.controls.root.Model', 'harness.controls.root.tmpl', 'harness.global', 'lib.backbone']);
 goog.addDependency('{harness}/javascripts/harness/trunk/deps.js', [], []);
 goog.addDependency('{harness}/javascripts/harness/trunk/global.js', ['harness.global'], ['core.global']);

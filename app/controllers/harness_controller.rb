@@ -3,4 +3,9 @@ class HarnessController < ApplicationController
 
   def index
   end
+
+  def welcome
+    render :layout => false
+  end
+
 end

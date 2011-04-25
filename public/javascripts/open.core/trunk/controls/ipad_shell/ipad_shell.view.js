@@ -37,10 +37,12 @@ core.controls.iPadShell.View = core.mvc.View.extend({
     this.regions = {
       left: {
         header: this.$('.left .header .region').get(0),
+        body: this.$('.left > .region').get(0),
         footer: this.$('.left .footer .region').get(0)
       },
       main: {
         header: this.$('.main .header .region').get(0),
+        body: this.$('.main > .region').get(0),
         footer: this.$('.main .footer .region').get(0)
       }
     };

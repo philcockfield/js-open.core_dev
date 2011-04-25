@@ -14,6 +14,7 @@ src_files:
   - public/javascripts/open.core/trunk/paths/paths_local.js
   - public/javascripts/open.core/trunk/init.js
   - public/javascripts/open.core/trunk/deps.js
+  - public/javascripts/harness/trunk/deps.js
 
 
 # stylesheets

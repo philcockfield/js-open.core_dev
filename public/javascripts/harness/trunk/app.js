@@ -1,8 +1,11 @@
 goog.provide('harness.app');
 
+goog.require('harness.controls.root.View');
 goog.require('lib.jquery');
-goog.require('core.controls.iPadShell.Model');
-goog.require('core.controls.iPadShell.View');
+
+//goog.require('harness.controls.root.Model');
+//goog.require('core.controls.iPadShell.Model');
+//goog.require('core.controls.iPadShell.View');
 
 
 /**
@@ -17,22 +20,18 @@ $(function() {
  * Entry point for the TestHarness.
  */
 harness.start = function() {
-
-
-  var createShell = function() {
+  var createRoot = function() {
 
     // Create the iPad shell.
-    var ns = core.controls.iPadShell;
-    var model = new ns.Model();
-    var view = new ns.View({ model: model });
+    var view = new harness.controls.root.View();
 
     // Insert it within the DOM.
     $('body').html(view.el);
 
     // Finish up.
-    return model;
+    return view.model;
   };
-  createShell();
-  
-
+  createRoot();
 };
+
+

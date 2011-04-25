@@ -5,3 +5,14 @@
 //                      Test Harness
 // ------------------------------------------------------
 
+.shell.harness {
+
+  .main .footer .region {
+    img.logo {
+      @include abs_pos(nil, 12, 15, nil);
+    }
+  }
+
+
+}
+

@@ -10,8 +10,8 @@ describe('core: controls/iPad_shell_spec', function() {
 
   beforeEach(function() {
     shell = core.controls.iPadShell;
-    model = new shell.Model();
-    view = new shell.View({ model: model });
+    view = new shell.View();
+    model = view.model;
   });
 
 
@@ -42,12 +42,49 @@ describe('core: controls/iPad_shell_spec', function() {
       expect(view.el.className).toEqual('core shell ipad');
     });
 
+
+    describe('model', function() {
+      it('creates a model if not specified at creation', function() {
+        expect(new shell.View().model).toBeDefined();
+      });
+
+      it('uses the model passed at creation', function() {
+        expect(new shell.View({ model: model }).model).toEqual(model);
+      });
+    });
+
+
     describe('render', function() {
       it('renders upon creation', function() {
         expect($(view.el).children().length).not.toEqual(0);
       });
     });
 
+    describe('regions', function() {
+      describe('left', function() {
+        it('has header region', function() {
+          expect(view.regions.left.header).toBeDefined();
+          expect(view.regions.left.header).toEqual(view.$('.left .header .region').get(0));
+        });
+
+        it('has footer region', function() {
+          expect(view.regions.left.footer).toBeDefined();
+          expect(view.regions.left.footer).toEqual(view.$('.left .footer .region').get(0));
+        });
+      });
+
+      describe('main', function() {
+        it('has header region', function() {
+          expect(view.regions.main.header).toBeDefined();
+          expect(view.regions.main.header).toEqual(view.$('.main .header .region').get(0));
+        });
+
+        it('has footer region', function() {
+          expect(view.regions.main.footer).toBeDefined();
+          expect(view.regions.main.footer).toEqual(view.$('.main .footer .region').get(0));
+        });
+      });
+    });
   });
 
   describe('Template (tmpl)', function() {

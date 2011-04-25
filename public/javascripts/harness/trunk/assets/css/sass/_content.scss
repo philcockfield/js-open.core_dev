@@ -1,0 +1,29 @@
+@import "common";
+
+// ------------------------------------------------------
+//                      Constants
+// ------------------------------------------------------
+$content_images: "#{$images}/content";
+
+
+// ------------------------------------------------------
+//                        Welcome
+// ------------------------------------------------------
+.main .welcome {
+  $welcome_images: "#{$content_images}/welcome";
+  $default: #007bd7;
+  $top: #0a93ec;
+  $bottom: #003683;
+  @include gradient_y($default, $top, $bottom);
+
+  .grid {
+    background-image: url(#{$welcome_images}/grid_lines.png);
+  }
+
+
+  img.title {
+    $width:  536;
+    $height: 81;
+    @include abs_center($width, $height, 0, -35);
+  }
+}

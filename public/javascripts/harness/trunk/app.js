@@ -34,8 +34,7 @@ harness.start = function() {
   };
   shell = createRoot();
 
-  shell.renderMainHtml('harness/welcome', function() {
-    console.log('Rendered Main');
+  shell.renderMainHtml('harness/content/welcome', function() {
   });
 
 };

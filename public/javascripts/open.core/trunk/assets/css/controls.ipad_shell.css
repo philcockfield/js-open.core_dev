@@ -1,3 +1,10 @@
+.abs_fill {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px; }
+
 .myriad {
   font-family: "myriad-pro-1", "myriad-pro-2"; }
 

@@ -4,7 +4,7 @@ CoreDev::Application.routes.draw do
   match "js/init.js", :to => "javascripts#init"
 
   match "harness", :to => "harness#index"
-  match "harness/welcome", :to => "harness#welcome"
+  match "harness/content/welcome", :to => "harness#welcome"
 
   root :to => "pages#home"
 end

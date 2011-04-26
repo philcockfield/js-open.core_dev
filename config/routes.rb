@@ -6,5 +6,5 @@ CoreDev::Application.routes.draw do
   match "harness", :to => "harness#index"
   match "harness/content/welcome", :to => "harness#welcome"
 
-  root :to => "pages#home"
+  root :to => "harness#index"
 end

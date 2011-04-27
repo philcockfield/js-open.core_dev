@@ -1,6 +1,7 @@
 goog.provide('harness.app');
 
 goog.require('harness.controls.root.View');
+goog.require('core.util.mobile');
 goog.require('lib.jquery');
 
 //goog.require('harness.controls.root.Model');
@@ -36,8 +37,7 @@ harness.start = function() {
 
 
   // Prevent the whole screen from scrolling when dragged.
-  document.addEventListener(
-          'touchmove', function(e) { e.preventDefault(); }, false);
+  core.util.mobile.lockPage();
 
 
   shell.renderMainHtml('harness/content/welcome', function() {

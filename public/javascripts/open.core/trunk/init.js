@@ -2195,6 +2195,7 @@ goog.addDependency('{open.core}/javascripts/open.core/trunk/core/testing/backbon
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/testing/testing.util.js', ['core.testing.util'], ['goog.string', 'lib.underscore']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/util/events.js', ['core.events'], ['lib.jquery']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/util/func.js', ['core.util.func'], []);
+goog.addDependency('{open.core}/javascripts/open.core/trunk/core/util/mobile.js', ['core.util.mobile'], []);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/util/reflection.js', ['core.reflection'], []);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/deps.js', [], []);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/global.js', ['core.global'], []);

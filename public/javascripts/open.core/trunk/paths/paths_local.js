@@ -15,7 +15,7 @@ LOADER.coreDomain = function() {
   };
 
   // Determine if running on host-name or IP address.
-  if (onServer(LOADER.coreLocal)) localServer = LOADER.coreLocal;
+  if (onServer('http://localhost')) localServer = LOADER.coreLocal;
   if (onServer(LOADER.coreLocalIP)) localServer = LOADER.coreLocalIP;
 
   // Never use local addresses when not running locally.

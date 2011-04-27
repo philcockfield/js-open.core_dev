@@ -34,6 +34,12 @@ harness.start = function() {
   };
   shell = createRoot();
 
+
+  // Prevent the whole screen from scrolling when dragged.
+  document.addEventListener(
+          'touchmove', function(e) { e.preventDefault(); }, false);
+
+
   shell.renderMainHtml('harness/content/welcome', function() {
   });
 

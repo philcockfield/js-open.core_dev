@@ -2,18 +2,27 @@ var LOADER = LOADER || {};
 LOADER.useLocal = true;
 
 LOADER.coreLocal = 'http://localhost:3333';
+LOADER.coreLocalIP = 'http://10.0.1.3:3333';
 LOADER.coreRemote = 'http://opencore.heroku.com';
 
 
 LOADER.coreDomain = function() {
   var useLocal = LOADER.useLocal;
+  var localServer;
+
+  var onServer = function(server) {
+    return location.href.indexOf(server) === 0;
+  };
+
+  // Determine if running on host-name or IP address.
+  if (onServer(LOADER.coreLocal)) localServer = LOADER.coreLocal;
+  if (onServer(LOADER.coreLocalIP)) localServer = LOADER.coreLocalIP;
 
   // Never use local addresses when not running locally.
-  if (location.href.indexOf('http://localhost') < 0) {
-    useLocal = false;
-  }
+  if (useLocal && !localServer) useLocal = false;
 
-  return useLocal ? LOADER.coreLocal : LOADER.coreRemote;
+  // Finish up.
+  return useLocal ? localServer : LOADER.coreRemote;
 };
 
 

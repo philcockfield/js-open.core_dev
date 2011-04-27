@@ -12,6 +12,7 @@ class JavascriptPaths
     # Replace tokens with values.
     js = js.gsub("{{USE_LOCAL}}", use_local.to_s)
     js = js.gsub("{{CORE_SERVER_LOCAL}}", Constants::CORE_SERVER_LOCAL)
+    js = js.gsub("{{CORE_SERVER_LOCAL_IP}}", Constants::CORE_SERVER_LOCAL_IP)
     js = js.gsub("{{CORE_SERVER_REMOTE}}", Constants::CORE_SERVER_REMOTE)
     js = js.gsub("{{CORE_FOLDER}}", Constants::CORE_FOLDER)
     js = js.gsub("{{CORE_VERSION}}", Constants::CORE_VERSION)

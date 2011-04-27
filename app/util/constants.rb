@@ -7,6 +7,7 @@ module Constants
   # Open.Core
   CORE_VERSION = "trunk"
   CORE_SERVER_LOCAL = "http://localhost:3333"
+  CORE_SERVER_LOCAL_IP = "http://10.0.1.3:3333"
   CORE_SERVER_REMOTE = "http://opencore.heroku.com"
 
   CORE_FOLDER = "open.core"

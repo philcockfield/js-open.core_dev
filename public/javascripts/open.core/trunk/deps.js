@@ -8,6 +8,7 @@ goog.addDependency('{open.core}/javascripts/open.core/trunk/core/controls/ipad_s
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/controls/ipad_shell/ipad_shell.tmpl.js', ['core.controls.iPadShell.tmpl'], ['soy', 'soy.StringBuilder']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/controls/ipad_shell/ipad_shell.view.js', ['core.controls.iPadShell.View'], ['core.controls.iPadShell.Model', 'core.controls.iPadShell.tmpl', 'core.mvc.View']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/models/control.js', ['core.models.Control'], ['core.mvc.Model']);
+goog.addDependency('{open.core}/javascripts/open.core/trunk/core/models/region.js', ['core.models.Region'], []);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/models/spacing.js', ['core.models.Spacing'], ['core.mvc.Model']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/mvc/model.js', ['core.mvc.Model'], ['core.global', 'core.util.func', 'lib.backbone']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/core/mvc/view.js', ['core.mvc.View'], ['core.global', 'lib.backbone', 'lib.jquery']);

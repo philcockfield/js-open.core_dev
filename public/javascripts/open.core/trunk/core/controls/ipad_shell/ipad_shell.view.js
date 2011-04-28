@@ -34,7 +34,7 @@ core.controls.iPadShell.View = core.mvc.View.extend({
     $(this.el).html(html);
 
     // Build regions map.
-    this.regions = {
+    this.regionElements = {
       left: {
         header: this.$('.left .header .region').get(0),
         body: this.$('.left > .region').get(0),
@@ -53,8 +53,8 @@ core.controls.iPadShell.View = core.mvc.View.extend({
 
 
   /**
-   * Gets the set of regions
+   * Gets the set of elements for each region in the shell.
    */
-  regions: null // Set in 'render' method.
+  regionElements: null // Set in 'render' method.
 
 });

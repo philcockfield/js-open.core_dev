@@ -11,11 +11,11 @@ core.controls.iPadShell.tmpl.root = function(opt_data, opt_sb) {
   var output = opt_sb || new soy.StringBuilder();
   output.append('<div class="left">');
   core.controls.iPadShell.tmpl.header(opt_data, output);
-  output.append('<div class="region"></div>');
+  output.append('<div class="region body"></div>');
   core.controls.iPadShell.tmpl.footer(opt_data, output);
   output.append('</div><div class="main">');
   core.controls.iPadShell.tmpl.header(opt_data, output);
-  output.append('<div class="region"></div>');
+  output.append('<div class="region body"></div>');
   core.controls.iPadShell.tmpl.footer(opt_data, output);
   output.append('</div>');
   if (!opt_sb) return output.toString();

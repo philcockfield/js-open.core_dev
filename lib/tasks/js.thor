@@ -10,11 +10,6 @@ require File.expand_path('app/util/constants.rb')
 class Js < Thor
   include Constants
 
-#  JS_PATH = "public/javascripts"
-#  CORE_PATH = "#{JS_PATH}/open.core"
-#  CLOSURE_PATH = "#{JS_PATH}/closure"
-#  CLOSURE_TOOLS_PATH = "#{CLOSURE_PATH}/closure-library/closure/bin"
-
   desc "build", "Calls all tasks to build the project in it's entirety"
 
   def build

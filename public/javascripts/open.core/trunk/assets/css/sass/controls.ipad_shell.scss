@@ -24,7 +24,15 @@ $header_footer_border_color: #797f8f;
 
 
 // ------------------------------------------------------
-//                     Shell Structure
+//                   Shell (General)
+// ------------------------------------------------------
+.core.shell .region {
+  overflow: hidden;
+}
+
+
+// ------------------------------------------------------
+//                iPad Shell (Structure)
 // ------------------------------------------------------
 .core.shell.ipad {
   @include abs_pos();

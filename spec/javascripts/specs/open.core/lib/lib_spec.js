@@ -1,4 +1,5 @@
 goog.require('lib.jquery');
+goog.require('lib.jqueryUI');
 goog.require('lib.underscore');
 goog.require('lib.backbone');
 
@@ -12,6 +13,19 @@ describe('Third Party Libraries', function() {
       expect(lib.jquery.version).toEqual("1.4.2");
     });
   });
+
+  describe('lib.jqueryUI', function() {
+    it("has version on namespace", function() {
+      expect(lib.jqueryUI.version).toEqual('1.8.11');
+    });
+
+    it('has a jQuery UI button', function() {
+      var el = $('<div></div>');
+      el.button();
+      expect(el.attr('role')).toEqual('button');
+    });
+  });
+
 
   describe('lib.backbone', function() {
     it('has been provided', function() {

@@ -1,6 +1,7 @@
 goog.require('core.global');
 goog.require('goog.string');
 
+
 describe('core: global_spec', function() {
 
   it('is provided', function() {
@@ -10,6 +11,13 @@ describe('core: global_spec', function() {
   it('has version', function() {
     expect(core.version).toBeDefined();
   });
+
+  describe('copy of utils to core', function() {
+    it('has goog.string.subs on core', function() {
+      expect(core.subs('one %s three', 'two')).toEqual('one two three');
+    });
+  });
+
 
   describe('paths', function() {
     it('defines the base paths', function() {
@@ -33,6 +41,11 @@ describe('core: global_spec', function() {
       expect(paths.assets).toBeDefined();
       expect(paths.images).toBeDefined();
       expect(paths.css).toBeDefined();
+    });
+
+    it('store sub-folder value', function() {
+      var paths = core.createPaths('foo');
+      expect(paths.subFolder).toEqual('foo');
     });
 
     it('creates paths with sub-folder for images', function() {

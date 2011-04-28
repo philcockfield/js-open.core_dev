@@ -1,4 +1,5 @@
 goog.provide('core.global');
+goog.require('goog.string');
 
 
 /**
@@ -35,7 +36,25 @@ core.Paths = function(root) {
  */
 core.createPaths = function(subFolder, root) {
   var paths = new core.Paths(root);
+  paths.subFolder = subFolder;
   paths.images = paths.images + '/' + subFolder;
   paths.css = paths.css + '/' + subFolder;
   return paths;
+};
+
+
+/** ------------------------------------------------
+ *            Convenience methods on 'core'
+ *  ------------------------------------------------ */
+
+/**
+ * Does simple python-style string substitution.
+ * subs("foo%s hot%s", "bar", "dog") becomes "foobar hotdog".
+ * @param {string} str The string containing the pattern.
+ * @param {...*} var_args The items to substitute into the pattern.
+ * @return {string} A copy of {@code str} in which each occurrence of
+ *     {@code %s} has been replaced an argument from {@code var_args}.
+ */
+core.subs = function(str, var_args) {
+  return goog.string.subs(str, var_args);
 };

@@ -1,12 +1,11 @@
 goog.provide('harness.app');
 
-goog.require('harness.controls.root.View');
+goog.require('core.controls.button.defaultButton.View');
+goog.require('core.controls.button.textButton.View');
 goog.require('core.util.mobile');
+goog.require('harness.controls.root.View');
 goog.require('lib.jquery');
 
-//goog.require('harness.controls.root.Model');
-//goog.require('core.controls.iPadShell.Model');
-//goog.require('core.controls.iPadShell.View');
 
 
 /**
@@ -41,8 +40,24 @@ harness.start = function() {
 
 
   shell.renderMainHtml('harness/content/welcome', function() {
+    button(function(e) {
+      console.log('click: ', e.label());
+    });
   });
 
+
+
+  var button = function(callback) {
+    var create = function(label, Type) {
+      var btn = new Type();
+      btn.model.label(label);
+      $('.left .region.body').append(btn.el);
+      btn.model.onClick(callback);
+    };
+
+    create('Default', core.controls.button.defaultButton.View);
+    create('Text Button', core.controls.button.textButton.View);
+  };
 };
 
 

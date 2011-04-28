@@ -16,6 +16,9 @@ div.bevel.highlight {
   height: 1px;
   background: white; }
 
+.core.shell .region {
+  overflow: hidden; }
+
 .core.shell.ipad {
   position: absolute;
   left: 0px;

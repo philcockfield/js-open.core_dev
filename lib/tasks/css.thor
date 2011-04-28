@@ -15,21 +15,9 @@ class Css < Thor
 
   desc "watch [NAME]", "Start watching the .scss (Saas) files for changes."
 
-  def watch(name = "core")
-    success = true
-
-    case name
-      when "open"
-        success = false if !watch_folder(CORE_CSS_PATH)
-      when "core"
-        success = false if !watch_folder(CORE_CSS_PATH)
-      when "harness"
-        success = false if !watch_folder(HARNESS_CSS_PATH)
-      else
-        puts "Don't know what '#{name}' is."
-    end
-
-    return success
+  def watch()
+    watch_folder(CORE_CSS_PATH, true)
+    watch_folder(HARNESS_CSS_PATH, true)
   end
 
 
@@ -68,7 +56,10 @@ class Css < Thor
   end
 
 
-  def watch_folder(folder)
-    system("sass --watch #{folder}/sass:#{folder}")
+  def watch_folder(folder, continue = false)
+    expr = "sass --watch #{folder}/sass:#{folder}"
+    expr += " &" if continue
+    system(expr)
+    system("pwd")
   end
 end

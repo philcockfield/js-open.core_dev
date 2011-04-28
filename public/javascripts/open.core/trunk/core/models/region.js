@@ -14,6 +14,30 @@ core.models.Region = core.models.Control.extend({
     // Call constructor in base class.
     core.models.Control.prototype.initialize.call(this);
 
+  },
+
+  /**
+   * Loads the HTML from the given URL, and fires
+   * the 'load:html' event when complete.
+   *
+   * @param {string} url of the HTML (with optional fragment selector).
+   * @param {object} complete - include 'success' and 'error' callbacks as desired.
+   */
+  loadHtml: function(url, complete) {
+    var self = this;
+
+    $.ajax({
+      url: url,
+      success: function(data) {
+        self.trigger('load:html', data);
+        if (complete && complete.success) complete.success(data);
+      },
+      complete: function(xhr, text) {
+        if (text !== 'success') {
+          if (complete && complete.error) complete.error(xhr, text);
+        }
+      }
+    });
   }
 
 });

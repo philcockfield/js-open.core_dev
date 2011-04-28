@@ -64,7 +64,8 @@ harness.controls.root.View = core.mvc.View.extend({
     var tmpl = harness.controls.root.tmpl;
 
     // Render regions.
-    $(this.shell.regionElements.main.footer).html(tmpl.mainFooter({ view: this }));
+    $(this.shell.regionElements.main.footer)
+            .html(tmpl.mainFooter({ view: this }));
 
     // Finish up.
     return this;

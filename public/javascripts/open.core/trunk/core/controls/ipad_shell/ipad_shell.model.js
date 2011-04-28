@@ -29,7 +29,7 @@ core.controls.iPadShell.Model = core.models.Control.extend({
         body: new Region(),
         footer: new Region()
       }
-    }
+    };
   },
 
   /**

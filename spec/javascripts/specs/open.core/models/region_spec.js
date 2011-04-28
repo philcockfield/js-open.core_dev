@@ -23,8 +23,7 @@ describe('core: models/region_spec', function() {
   });
 
 
-  describe('loadHtml', function() {
-
+  describe('loadUrl', function() {
     var ajaxParams;
 
     beforeEach(function() {
@@ -35,7 +34,7 @@ describe('core: models/region_spec', function() {
     });
 
     it('calls through to jQuery load method', function() {
-      region.loadHtml('foo.html');
+      region.loadUrl('foo.html');
       expect(ajaxParams.url).toEqual('foo.html');
     });
 
@@ -43,14 +42,21 @@ describe('core: models/region_spec', function() {
       var html;
       region.bind('load:html', function(e) { html = e; });
 
-      region.loadHtml('foo.html');
+      region.loadUrl('foo.html');
       ajaxParams.success('Html');
       expect(html).toEqual('Html');
     });
 
+    it('invokes the loadHtml method', function() {
+      spyOn(region, 'loadHtml').andCallThrough();
+      region.loadUrl('foo.html');
+      ajaxParams.success('Html');
+      expect(region.loadHtml.callCount).toEqual(1);
+    });
+
     it('invokes success callback', function() {
       var html;
-      region.loadHtml('foo.html', {
+      region.loadUrl('foo.html', {
         success: function(data) { html = data; }
       });
 
@@ -60,7 +66,7 @@ describe('core: models/region_spec', function() {
 
     it('invokes error callback', function() {
       var xhr, status;
-      region.loadHtml('foo.html', {
+      region.loadUrl('foo.html', {
         error: function(eXhr, eStatus) { xhr = eXhr, status = eStatus; }
       });
 
@@ -72,7 +78,7 @@ describe('core: models/region_spec', function() {
 
     it('does not invoke error callback on success', function() {
       var xhr, status;
-      region.loadHtml('foo.html', {
+      region.loadUrl('foo.html', {
         error: function(eXhr, eStatus) { xhr = eXhr, status = eStatus; }
       });
 
@@ -81,4 +87,16 @@ describe('core: models/region_spec', function() {
       expect(status).not.toBeDefined();
     });
   });
+
+
+  describe('loadHtml', function() {
+    it('fires the load:html event', function() {
+      var html;
+      region.bind('load:html', function(e) { html = e; });
+
+      region.loadHtml('foo');
+      expect(html).toEqual('foo');
+    });
+  });
+
 });

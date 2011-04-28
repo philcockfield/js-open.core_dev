@@ -5,6 +5,7 @@ goog.require('core.models.Region');
 
 
 describe('core: controls/iPad_shell_spec', function() {
+  var Region = core.models.Region;
   var shell;
   var model, view;
 
@@ -26,6 +27,42 @@ describe('core: controls/iPad_shell_spec', function() {
 
     it('calls base class on creation', function() {
       expect(model.isVisible).toBeDefined();
+    });
+
+    describe('regions', function() {
+      var regions;
+
+      beforeEach(function() {
+        regions = view.model.regions;
+      });
+
+      describe('left', function() {
+        it('has header region', function() {
+          expect(core.isInstanceOfType(regions.left.header, Region)).toBeTruthy();
+        });
+
+        it('has body region', function() {
+          expect(core.isInstanceOfType(regions.left.body, Region)).toBeTruthy();
+        });
+
+        it('has footer region', function() {
+          expect(core.isInstanceOfType(regions.left.footer, Region)).toBeTruthy();
+        });
+      });
+
+      describe('main', function() {
+        it('has header region', function() {
+          expect(core.isInstanceOfType(regions.main.header, Region)).toBeTruthy();
+        });
+
+        it('has body region', function() {
+          expect(core.isInstanceOfType(regions.main.body, Region)).toBeTruthy();
+        });
+
+        it('has footer region', function() {
+          expect(core.isInstanceOfType(regions.main.footer, Region)).toBeTruthy();
+        });
+      });
     });
   });
 
@@ -61,42 +98,10 @@ describe('core: controls/iPad_shell_spec', function() {
     });
 
     describe('regions', function() {
-      var Region = core.models.Region;
-      var regions, regionElements;
+      var regionElements;
 
       beforeEach(function() {
         regionElements = view.regionElements;
-        regions = view.model.regions;
-      });
-
-      describe('models', function() {
-        describe('left', function() {
-          it('has header region', function() {
-            expect(core.isInstanceOfType(regions.left.header, Region)).toBeTruthy();
-          });
-
-          it('has body region', function() {
-            expect(core.isInstanceOfType(regions.left.body, Region)).toBeTruthy();
-          });
-
-          it('has footer region', function() {
-            expect(core.isInstanceOfType(regions.left.footer, Region)).toBeTruthy();
-          });
-        });
-
-        describe('main', function() {
-          it('has header region', function() {
-            expect(core.isInstanceOfType(regions.main.header, Region)).toBeTruthy();
-          });
-
-          it('has body region', function() {
-            expect(core.isInstanceOfType(regions.main.body, Region)).toBeTruthy();
-          });
-
-          it('has footer region', function() {
-            expect(core.isInstanceOfType(regions.main.footer, Region)).toBeTruthy();
-          });
-        });
       });
 
       describe('elements', function() {
@@ -131,6 +136,42 @@ describe('core: controls/iPad_shell_spec', function() {
           it('has footer region', function() {
             expect(regionElements.main.footer).toBeDefined();
             expect(regionElements.main.footer).toEqual(view.$('.main .footer .region').get(0));
+          });
+        });
+      });
+
+      describe('html loading', function() {
+        describe('left', function() {
+          it('load html into header region', function() {
+            model.regions.left.header.loadHtml('<h1>Header</h1>')
+            expect($(view.regionElements.left.header).html()).toEqual('<h1>Header</h1>');
+          });
+
+          it('load html into body region', function() {
+            model.regions.left.body.loadHtml('<h1>Body</h1>')
+            expect($(view.regionElements.left.body).html()).toEqual('<h1>Body</h1>');
+          });
+
+          it('load html into footer region', function() {
+            model.regions.left.footer.loadHtml('<h1>Footer</h1>')
+            expect($(view.regionElements.left.footer).html()).toEqual('<h1>Footer</h1>');
+          });
+        });
+
+        describe('main', function() {
+          it('load html into header region', function() {
+            model.regions.main.header.loadHtml('<h1>Header</h1>')
+            expect($(view.regionElements.main.header).html()).toEqual('<h1>Header</h1>');
+          });
+
+          it('load html into body region', function() {
+            model.regions.main.body.loadHtml('<h1>Body</h1>')
+            expect($(view.regionElements.main.body).html()).toEqual('<h1>Body</h1>');
+          });
+
+          it('load html into footer region', function() {
+            model.regions.main.footer.loadHtml('<h1>Footer</h1>')
+            expect($(view.regionElements.main.footer).html()).toEqual('<h1>Footer</h1>');
           });
         });
       });

@@ -15,12 +15,33 @@ core.controls.iPadShell.View = core.mvc.View.extend({
    * Constructor.
    */
   initialize: function() {
+    var self = this;
 
     // Ensure a model exists.
     if (!this.model) this.model = new core.controls.iPadShell.Model();
 
     _.bindAll(this, 'render');
     this.render();
+
+    // Wire up events.
+    (function() {
+      var regions = self.model.regions;
+      var elements = self.regionElements;
+      var bindRegion = function(region, el) {
+        region.bind('load:html', function(html) {
+          $(el).html(html);
+        });
+      };
+      // Left.
+      bindRegion(regions.left.header, elements.left.header);
+      bindRegion(regions.left.body, elements.left.body);
+      bindRegion(regions.left.footer, elements.left.footer);
+
+      // Main.
+      bindRegion(regions.main.header, elements.main.header);
+      bindRegion(regions.main.body, elements.main.body);
+      bindRegion(regions.main.footer, elements.main.footer);
+    }());
   },
 
 

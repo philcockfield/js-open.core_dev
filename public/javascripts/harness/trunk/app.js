@@ -20,7 +20,7 @@ $(function() {
  * Entry point for the TestHarness.
  */
 harness.start = function() {
-  var shell;
+  var root;
   var createRoot = function() {
 
     // Create the iPad shell.
@@ -32,19 +32,22 @@ harness.start = function() {
     // Finish up.
     return view.model;
   };
-  shell = createRoot();
+  root = createRoot();
 
 
   // Prevent the whole screen from scrolling when dragged.
   core.util.mobile.lockPage();
 
 
-  shell.renderMainHtml('harness/content/welcome', function() {
-    button(function(e) {
-      console.log('click: ', e.label());
-    });
-  });
 
+  root.shell.regions.main.body.loadUrl('harness/content/welcome', {
+    success: function() {
+      button(function(e) {
+        console.log('click: ', e.label());
+      });
+
+    }
+  });
 
 
   var button = function(callback) {

@@ -34,10 +34,6 @@ describe('harness: controls/root_spec', function() {
     it('calls base constructor', function() {
       expect(model.isVisible).toBeDefined();
     });
-
-    it('has a renderMainHtml method (set from the view)', function() {
-      expect(model.renderMainHtml).toEqual(view.renderMainHtml);
-    });
   });
 
 

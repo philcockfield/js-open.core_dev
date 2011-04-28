@@ -17,7 +17,7 @@ harness.controls.root.View = core.mvc.View.extend({
    * Constructor.
    */
   initialize: function() {
-    _.bindAll(this, 'render', 'renderMainHtml');
+    _.bindAll(this, 'render');
 
     // Ensure a model exists.
     if (!this.model) this.model = new harness.controls.root.Model();
@@ -31,9 +31,6 @@ harness.controls.root.View = core.mvc.View.extend({
     this.el = this.shell.el;
     this.$(this.el).addClass('harness');
     this.regions = this.shell.regions;
-
-    // Store method on model.
-    this.model.renderMainHtml = this.renderMainHtml;
 
     // Finish up.
     this.render();
@@ -69,19 +66,5 @@ harness.controls.root.View = core.mvc.View.extend({
 
     // Finish up.
     return this;
-  },
-
-
-  /**
-   * Renders the HTML at the given URL into the main region.
-   * @param {string} url to load.
-   * @param {function} callback to invoke upon completion.
-   */
-  renderMainHtml: function(url, callback) {
-    var self = this;
-    $.get(url, function(data) {
-      $(self.shell.regionElements.main.body).html(data);
-      if (callback) callback();
-    });
   }
 });

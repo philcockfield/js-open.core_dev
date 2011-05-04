@@ -7,7 +7,9 @@ goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/button
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/ipad_shell/ipad_shell.model.js', ['core.controls.iPadShell.Model'], ['core.models.Control', 'core.models.Region']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/ipad_shell/ipad_shell.tmpl.js', ['core.controls.iPadShell.tmpl'], ['soy', 'soy.StringBuilder']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/ipad_shell/ipad_shell.view.js', ['core.controls.iPadShell.View'], ['core.controls.iPadShell.Model', 'core.controls.iPadShell.tmpl', 'core.mvc.View']);
+goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/json/json.model.js', ['core.controls.json.Model'], ['core.models.Control']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/json/json.page.js', [], []);
+goog.addDependency('{open.core}/javascripts/open.core/trunk/code/controls/json/json.view.js', ['core.controls.json.View'], ['core.mvc.View']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/global.js', ['core.global'], ['goog.string']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/models/control.js', ['core.models.Control'], ['core.mvc.Model']);
 goog.addDependency('{open.core}/javascripts/open.core/trunk/code/models/region.js', ['core.models.Region'], []);

@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %title Open.Core (Development)
+    %title= @title || "Open.Core"
     = csrf_meta_tag
-    = render 'layouts/stylesheets'
-    = render 'layouts/scripts/scripts'
+    = render @stylesheets || 'layouts/stylesheets'
+    = render @scripts || 'layouts/scripts/scripts'
   %body
     = yield

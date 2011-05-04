@@ -9,12 +9,12 @@ goog.require('lib.jquery');
  * The base for views (visual controls).
  */
 core.mvc.View = Backbone.View.extend({
-
   /**
    * Constructor.
    */
   initialize: function() {
     var self = this, model = this.model;
+    _.bindAll(this, 'html');
 
     // Keep visibility in sync.
     if (model) {
@@ -26,5 +26,14 @@ core.mvc.View = Backbone.View.extend({
         }
       });
     }
+  },
+
+
+  /**
+   * Gets or sets the HTML of the element (.el).
+   * @param {string} html value to write into the element.
+   */
+  html: function(html) {
+    return $(this.el).html(html);
   }
 });

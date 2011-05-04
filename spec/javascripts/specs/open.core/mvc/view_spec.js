@@ -40,4 +40,16 @@ describe('core: mvc/view_spec', function() {
       expect(el.css('display')).toEqual('');
     });
   });
+
+  describe('html method', function() {
+    it('reads the html content of the view', function() {
+      el.html('<p>hello</p>');
+      expect(view.html()).toEqual('<p>hello</p>');
+    });
+
+    it('write the html content of the view', function() {
+      view.html('<p>hello</p>');
+      expect(el.html()).toEqual('<p>hello</p>');
+    });
+  });
 });
